@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Amor escrito en el Cielo | Cena de Gala IASD Pacajes</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #160b05;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            background:
+                linear-gradient(rgba(25, 10, 2, .72),
+                    rgba(25, 10, 2, .78)),
+                url("invitacion.jpg");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+
+            padding: 40px 20px;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(circle at 80% 35%,
+                    rgba(255, 190, 70, .35),
+                    transparent 35%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            animation: aparecer 1.5s ease;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            letter-spacing: 4px;
+            margin-bottom: 35px;
+            opacity: .9;
+        }
+
+        .subtitle {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(20px, 4vw, 40px);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .amor {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(100px, 18vw, 230px);
+            line-height: .8;
+
+            color: #f7ead2;
+
+            text-shadow:
+                0 5px 25px rgba(0, 0, 0, .5);
+        }
+
+        .escrito {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(22px, 4vw, 45px);
+            letter-spacing: 4px;
+            margin-top: 10px;
+        }
+
+        .cielo {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(70px, 14vw, 180px);
+            font-weight: 700;
+
+            color: #f6e8cf;
+
+            text-shadow:
+                0 5px 20px rgba(0, 0, 0, .6);
+        }
+
+        .verse {
+            margin-top: 35px;
+            font-family: 'Cinzel', serif;
+            font-size: clamp(16px, 2vw, 24px);
+            line-height: 1.6;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .verse strong {
+            color: #f5c56a;
+        }
+
+        .scroll {
+            margin-top: 50px;
+            font-size: 13px;
+            letter-spacing: 3px;
+            animation: flotar 2s infinite;
+        }
+
+
+        /* =========================
+           SECCIONES
+        ========================= */
+
+        section {
+            padding: 90px 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: clamp(32px, 5vw, 55px);
+            color: #f3cf8a;
+            margin-bottom: 20px;
+        }
+
+        .section-line {
+            width: 100px;
+            height: 2px;
+            background: #d6a44e;
+            margin: 0 auto 55px;
+        }
+
+
+        /* =========================
+           INFORMACIÓN
+        ========================= */
+
+        .event {
+            background:
+                linear-gradient(135deg,
+                    #2b1208,
+                    #5a2d12,
+                    #1b0b04);
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            padding: 35px 25px;
+            text-align: center;
+
+            border: 1px solid rgba(232, 190, 110, .4);
+
+            background: rgba(255, 255, 255, .06);
+
+            backdrop-filter: blur(10px);
+
+            border-radius: 20px;
+
+            transition: .4s;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, .1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, .3);
+        }
+
+        .card-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-family: 'Cinzel', serif;
+            color: #f3cf8a;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           CONTADOR
+        ========================= */
+
+        .countdown-section {
+            text-align: center;
+
+            background:
+                radial-gradient(circle,
+                    #5a2b0d,
+                    #1a0904 70%);
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .time-box {
+            min-width: 130px;
+            padding: 25px 15px;
+
+            border: 1px solid #d5a94f;
+            border-radius: 15px;
+
+            background: rgba(255, 255, 255, .05);
+        }
+
+        .time-box span {
+            display: block;
+
+            font-family: 'Cinzel', serif;
+            font-size: 45px;
+
+            color: #f5cf85;
+        }
+
+        .time-box small {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+
+        /* =========================
+           VESTIMENTA
+        ========================= */
+
+        .dress {
+            background: #f4ead8;
+            color: #2a160b;
+            text-align: center;
+        }
+
+        .dress .section-title {
+            color: #5b3217;
+        }
+
+        .dress-content {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .dress-main {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(25px, 4vw, 45px);
+            color: #7b4a20;
+            margin: 20px 0;
+        }
+
+        .dress p {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            margin-top: 30px;
+            padding: 20px;
+
+            background: #3d1d0c;
+            color: #f8e7c6;
+
+            border-radius: 15px;
+
+            font-family: 'Cinzel', serif;
+        }
+
+
+        /* =========================
+           UBICACIÓN
+        ========================= */
+
+        .location {
+            background: #1a0c05;
+        }
+
+        .location-box {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .location-info {
+            padding: 40px;
+            border: 1px solid rgba(214, 164, 78, .5);
+            border-radius: 20px;
+
+            background:
+                linear-gradient(135deg,
+                    rgba(90, 45, 18, .8),
+                    rgba(20, 8, 3, .9));
+        }
+
+        .location-info h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 30px;
+            color: #f3cf8a;
+            margin-bottom: 20px;
+        }
+
+        .location-info p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .map {
+            overflow: hidden;
+            border-radius: 20px;
+
+            border: 2px solid rgba(214, 164, 78, .6);
+
+            min-height: 450px;
+        }
+
+        .map iframe {
+            width: 100%;
+            height: 450px;
+            border: 0;
+            display: block;
+        }
+
+
+        /* =========================
+           BOTÓN
+        ========================= */
+
+        .btn {
+            display: inline-block;
+
+            margin-top: 20px;
+            padding: 15px 30px;
+
+            text-decoration: none;
+
+            background: #d6a44e;
+            color: #281307;
+
+            font-weight: 700;
+
+            border-radius: 50px;
+
+            transition: .3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: #f0c66f;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 60px 20px;
+            text-align: center;
+
+            background: #100603;
+        }
+
+        footer h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 70px;
+            color: #eacb8a;
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            opacity: .8;
+            line-height: 1.8;
+        }
+
+
+        /* =========================
+           ANIMACIONES
+        ========================= */
+
+        @keyframes aparecer {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        @keyframes flotar {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(10px);
+            }
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width:800px) {
+
+            .hero {
+                background-attachment: scroll;
+            }
+
+            .location-box {
+                grid-template-columns: 1fr;
+            }
+
+            .location-info {
+                text-align: center;
+            }
+
+            section {
+                padding: 70px 15px;
+            }
+
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+     PORTADA
+========================= -->
+
+    <header class="hero">
+
+        <div class="hero-content">
+
+            <div class="logo">
+                IASD PACAJES
+            </div>
+
+            <div class="subtitle">
+                Cena de Gala
+            </div>
+
+            <div class="amor">
+                Amor
+            </div>
+
+            <div class="escrito">
+                ESCRITO EN EL
+            </div>
+
+            <div class="cielo">
+                CIELO
+            </div>
+
+
+            <p class="verse">
+
+                <strong>Rut 1:16</strong><br>
+
+                “Porque a dondequiera que tú fueres, iré yo;
+                y dondequiera que vivieres, viviré.”
+
+            </p>
+
+
+            <div class="scroll">
+                ↓ DESCUBRE LA INVITACIÓN ↓
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+     EVENTO
+========================= -->
+
+    <section class="event">
+
+        <div class="container">
+
+            <h2 class="section-title">
+                Una noche especial
+            </h2>
+
+            <div class="section-line"></div>
+
+
+            <div class="cards">
+
+
+                <div class="card">
+
+                    <div class="card-icon">📅</div>
+
+                    <h3>Fecha</h3>
+
+                    <p>
+                        20 de Septiembre
+                    </p>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <div class="card-icon">🕕</div>
+
+                    <h3>Hora</h3>
+
+                    <p>
+                        18:00 PM
+                    </p>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <div class="card-icon">💰</div>
+
+                    <h3>Entrada</h3>
+
+                    <p>
+                        Individual<br>
+                        <strong>Bs. 75</strong>
+                    </p>
+
+                </div>
+
+
+
+                <div class="card">
+
+                    <div class="card-icon">❤️</div>
+
+                    <h3>En Pareja</h3>
+
+                    <p>
+                        Pareja<br>
+                        <strong>Bs. 140</strong>
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+     CONTADOR
+========================= -->
+
+    <section class="countdown-section">
+
+        <div class="container">
+
+            <h2 class="section-title">
+                Faltan...
+            </h2>
+
+            <div class="section-line"></div>
+
+
+            <div class="countdown">
+
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <small>Días</small>
+                </div>
+
+
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <small>Horas</small>
+                </div>
+
+
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <small>Minutos</small>
+                </div>
+
+
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <small>Segundos</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+     VESTIMENTA
+========================= -->
+
+    <section class="dress">
+
+        <div class="container">
+
+            <h2 class="section-title">
+                Vestimenta
+            </h2>
+
+            <div class="section-line"></div>
+
+
+            <div class="dress-content">
+
+                <p>
+                    En relación a la temática:
+                </p>
+
+
+                <div class="dress-main">
+                    “AMOR EN TIEMPOS BÍBLICOS”
+                </div>
+
+
+                <p>
+                    🏆 Se premiará a las <strong>4 parejas</strong>
+                    con la mejor vestimenta de época.
+                </p>
+
+
+                <div class="highlight">
+
+                    ¡Prepárate para vivir una experiencia
+                    especial, elegante y llena de significado!
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+     UBICACIÓN
+========================= -->
+
+    <section class="location">
+
+        <div class="container">
+
+            <h2 class="section-title">
+                Ubicación
+            </h2>
+
+            <div class="section-line"></div>
+
+
+            <div class="location-box">
+
+
+                <div class="location-info">
+
+                    <h3>
+                        📍 Salón de Eventos
+                    </h3>
+
+
+                    <p>
+
+                        <strong>MAGNATE VINZ</strong>
+
+                    </p>
+
+
+                    <p>
+
+                        Te esperamos para compartir una noche
+                        especial de amistad, amor, fe y comunión.
+
+                    </p>
+
+
+                    <a class="btn" href="https://maps.app.goo.gl/1dCnkk5MiB45uyJ7A?g_st=aw" target="_blank">
+
+                        📍 Abrir en Google Maps
+
+                    </a>
+
+                </div>
+
+
+
+                <div class="map">
+
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3824.9250313554016!2d-68.192059!3d-16.529882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTbCsDMxJzQ3LjYiUyA2OMKwMTEnMzEuNCJX!5e0!3m2!1ses-419!2sbo!4v1789098051502!5m2!1ses-419!2sbo"
+                        allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
+                    </iframe>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+     CIERRE
+========================= -->
+
+    <footer>
+
+        <h2>
+            Amor escrito en el Cielo
+        </h2>
+
+        <p>
+
+            Una noche para recordar que las mejores historias
+            comienzan cuando Dios escribe el camino.
+
+        </p>
+
+
+        <p style="margin-top:20px;">
+
+            IASD PACAJES
+
+        </p>
+
+    </footer>
+
+
+
+    <!-- =========================
+     JAVASCRIPT
+========================= -->
+
+    <script>
+
+        // FECHA DEL EVENTO
+        // 20 DE SEPTIEMBRE DE 2026 - 18:00
+
+        const eventDate = new Date(
+            "September 20, 2026 18:00:00"
+        ).getTime();
+
+
+        function updateCountdown() {
+
+            const now = new Date().getTime();
+
+            const distance = eventDate - now;
+
+
+            if (distance < 0) {
+
+                document.querySelector(".countdown").innerHTML =
+                    "<h2>¡El evento ha comenzado!</h2>";
+
+                return;
+            }
+
+
+            const days = Math.floor(
+                distance / (1000 * 60 * 60 * 24)
+            );
+
+
+            const hours = Math.floor(
+                (distance % (1000 * 60 * 60 * 24))
+                / (1000 * 60 * 60)
+            );
+
+
+            const minutes = Math.floor(
+                (distance % (1000 * 60 * 60))
+                / (1000 * 60)
+            );
+
+
+            const seconds = Math.floor(
+                (distance % (1000 * 60))
+                / 1000
+            );
+
+
+            document.getElementById("days").innerHTML =
+                String(days).padStart(2, "0");
+
+
+            document.getElementById("hours").innerHTML =
+                String(hours).padStart(2, "0");
+
+
+            document.getElementById("minutes").innerHTML =
+                String(minutes).padStart(2, "0");
+
+
+            document.getElementById("seconds").innerHTML =
+                String(seconds).padStart(2, "0");
+
+        }
+
+
+        updateCountdown();
+
+        setInterval(
+            updateCountdown,
+            1000
+        );
+
+    </script>
+
+
+</body>
+
+</html>
