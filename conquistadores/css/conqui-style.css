@@ -1,0 +1,24 @@
+/* Conquistadores specific styles */
+.conqui-hero {
+    background: radial-gradient(circle at top right, #854d0e 0%, #0f172a 70%);
+}
+
+.conqui-title {
+    background: linear-gradient(to right, #fde047, #fef08a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.content-section {
+    padding: 5rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background: var(--secondary-color);
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 4px solid #eab308;
+    margin-bottom: 2rem;
+}
