@@ -1,894 +1,1740 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Amor escrito en el Cielo | Cena de Gala IASD Pacajes</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: #160b05;
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            min-height: 100vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-
-            background:
-                linear-gradient(rgba(25, 10, 2, .72),
-                    rgba(25, 10, 2, .78)),
-                url("invitacion.jpg");
-
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-
-            padding: 40px 20px;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-
-            background:
-                radial-gradient(circle at 80% 35%,
-                    rgba(255, 190, 70, .35),
-                    transparent 35%);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1000px;
-            animation: aparecer 1.5s ease;
-        }
-
-        .logo {
-            font-family: 'Cinzel', serif;
-            font-size: 14px;
-            letter-spacing: 4px;
-            margin-bottom: 35px;
-            opacity: .9;
-        }
-
-        .subtitle {
-            font-family: 'Oswald', sans-serif;
-            font-size: clamp(20px, 4vw, 40px);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        .amor {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(100px, 18vw, 230px);
-            line-height: .8;
-
-            color: #f7ead2;
-
-            text-shadow:
-                0 5px 25px rgba(0, 0, 0, .5);
-        }
-
-        .escrito {
-            font-family: 'Oswald', sans-serif;
-            font-size: clamp(22px, 4vw, 45px);
-            letter-spacing: 4px;
-            margin-top: 10px;
-        }
-
-        .cielo {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(70px, 14vw, 180px);
-            font-weight: 700;
-
-            color: #f6e8cf;
-
-            text-shadow:
-                0 5px 20px rgba(0, 0, 0, .6);
-        }
-
-        .verse {
-            margin-top: 35px;
-            font-family: 'Cinzel', serif;
-            font-size: clamp(16px, 2vw, 24px);
-            line-height: 1.6;
-            max-width: 850px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .verse strong {
-            color: #f5c56a;
-        }
-
-        .scroll {
-            margin-top: 50px;
-            font-size: 13px;
-            letter-spacing: 3px;
-            animation: flotar 2s infinite;
-        }
-
-
-        /* =========================
-           SECCIONES
-        ========================= */
-
-        section {
-            padding: 90px 20px;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-family: 'Cinzel', serif;
-            font-size: clamp(32px, 5vw, 55px);
-            color: #f3cf8a;
-            margin-bottom: 20px;
-        }
-
-        .section-line {
-            width: 100px;
-            height: 2px;
-            background: #d6a44e;
-            margin: 0 auto 55px;
-        }
-
-
-        /* =========================
-           INFORMACIÓN
-        ========================= */
-
-        .event {
-            background:
-                linear-gradient(135deg,
-                    #2b1208,
-                    #5a2d12,
-                    #1b0b04);
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            padding: 35px 25px;
-            text-align: center;
-
-            border: 1px solid rgba(232, 190, 110, .4);
-
-            background: rgba(255, 255, 255, .06);
-
-            backdrop-filter: blur(10px);
-
-            border-radius: 20px;
-
-            transition: .4s;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            background: rgba(255, 255, 255, .1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, .3);
-        }
-
-        .card-icon {
-            font-size: 45px;
-            margin-bottom: 15px;
-        }
-
-        .card h3 {
-            font-family: 'Cinzel', serif;
-            color: #f3cf8a;
-            margin-bottom: 12px;
-        }
-
-        .card p {
-            line-height: 1.7;
-            font-size: 15px;
-        }
-
-
-        /* =========================
-           CONTADOR
-        ========================= */
-
-        .countdown-section {
-            text-align: center;
-
-            background:
-                radial-gradient(circle,
-                    #5a2b0d,
-                    #1a0904 70%);
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .time-box {
-            min-width: 130px;
-            padding: 25px 15px;
-
-            border: 1px solid #d5a94f;
-            border-radius: 15px;
-
-            background: rgba(255, 255, 255, .05);
-        }
-
-        .time-box span {
-            display: block;
-
-            font-family: 'Cinzel', serif;
-            font-size: 45px;
-
-            color: #f5cf85;
-        }
-
-        .time-box small {
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-
-        /* =========================
-           VESTIMENTA
-        ========================= */
-
-        .dress {
-            background: #f4ead8;
-            color: #2a160b;
-            text-align: center;
-        }
-
-        .dress .section-title {
-            color: #5b3217;
-        }
-
-        .dress-content {
-            max-width: 800px;
-            margin: auto;
-        }
-
-        .dress-main {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(25px, 4vw, 45px);
-            color: #7b4a20;
-            margin: 20px 0;
-        }
-
-        .dress p {
-            font-size: 18px;
-            line-height: 1.8;
-        }
-
-        .highlight {
-            margin-top: 30px;
-            padding: 20px;
-
-            background: #3d1d0c;
-            color: #f8e7c6;
-
-            border-radius: 15px;
-
-            font-family: 'Cinzel', serif;
-        }
-
-
-        /* =========================
-           UBICACIÓN
-        ========================= */
-
-        .location {
-            background: #1a0c05;
-        }
-
-        .location-box {
-            display: grid;
-            grid-template-columns: 1fr 1.3fr;
-            gap: 35px;
-            align-items: center;
-        }
-
-        .location-info {
-            padding: 40px;
-            border: 1px solid rgba(214, 164, 78, .5);
-            border-radius: 20px;
-
-            background:
-                linear-gradient(135deg,
-                    rgba(90, 45, 18, .8),
-                    rgba(20, 8, 3, .9));
-        }
-
-        .location-info h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 30px;
-            color: #f3cf8a;
-            margin-bottom: 20px;
-        }
-
-        .location-info p {
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        .map {
-            overflow: hidden;
-            border-radius: 20px;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Amor escrito en el Cielo | Cena de Gala</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =====================================================
+   GENERAL
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Montserrat', sans-serif;
+    background:#120702;
+    color:white;
+    overflow-x:hidden;
+}
+
+section{
+    padding:100px 20px;
+}
+
+.container{
+    max-width:1150px;
+    margin:auto;
+}
+
+.section-title{
+    text-align:center;
+    font-family:'Cinzel',serif;
+    font-size:clamp(32px,5vw,60px);
+    color:#f3d18c;
+    margin-bottom:20px;
+}
+
+.section-line{
+    width:120px;
+    height:2px;
+    margin:0 auto 60px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #e7bd6a,
+        transparent
+    );
+}
 
-            border: 2px solid rgba(214, 164, 78, .6);
 
-            min-height: 450px;
-        }
+/* =====================================================
+   PARTÍCULAS
+===================================================== */
 
-        .map iframe {
-            width: 100%;
-            height: 450px;
-            border: 0;
-            display: block;
-        }
+.particles{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:100;
+    overflow:hidden;
+}
 
+.particle{
+    position:absolute;
+    width:4px;
+    height:4px;
+    border-radius:50%;
+    background:#f5d78c;
+    box-shadow:0 0 12px #f5d78c;
+    opacity:0;
 
-        /* =========================
-           BOTÓN
-        ========================= */
+    animation:
+        subir 8s linear infinite;
+}
 
-        .btn {
-            display: inline-block;
+.particle:nth-child(1){left:8%;animation-delay:0s}
+.particle:nth-child(2){left:18%;animation-delay:2s}
+.particle:nth-child(3){left:30%;animation-delay:4s}
+.particle:nth-child(4){left:42%;animation-delay:1s}
+.particle:nth-child(5){left:55%;animation-delay:5s}
+.particle:nth-child(6){left:68%;animation-delay:3s}
+.particle:nth-child(7){left:78%;animation-delay:6s}
+.particle:nth-child(8){left:90%;animation-delay:2.5s}
 
-            margin-top: 20px;
-            padding: 15px 30px;
+@keyframes subir{
 
-            text-decoration: none;
+    0%{
+        transform:translateY(110vh) scale(.3);
+        opacity:0;
+    }
 
-            background: #d6a44e;
-            color: #281307;
+    20%{
+        opacity:.8;
+    }
 
-            font-weight: 700;
+    80%{
+        opacity:.7;
+    }
 
-            border-radius: 50px;
+    100%{
+        transform:translateY(-10vh) scale(1);
+        opacity:0;
+    }
+}
 
-            transition: .3s;
-        }
 
-        .btn:hover {
-            transform: scale(1.05);
-            background: #f0c66f;
-        }
+/* =====================================================
+   HERO
+===================================================== */
 
+.hero{
 
-        /* =========================
-           FOOTER
-        ========================= */
+    min-height:100vh;
 
-        footer {
-            padding: 60px 20px;
-            text-align: center;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
-            background: #100603;
-        }
+    text-align:center;
 
-        footer h2 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 70px;
-            color: #eacb8a;
-            margin-bottom: 15px;
-        }
+    position:relative;
 
-        footer p {
-            opacity: .8;
-            line-height: 1.8;
-        }
+    overflow:hidden;
 
+    background:
+        linear-gradient(
+            rgba(20,7,2,.55),
+            rgba(20,7,2,.82)
+        ),
+        url("invitacion.jpg");
 
-        /* =========================
-           ANIMACIONES
-        ========================= */
+    background-size:cover;
+    background-position:center;
 
-        @keyframes aparecer {
+}
 
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+/* brillo del sol */
 
-        }
+.hero::before{
 
-        @keyframes flotar {
+    content:"";
 
-            0%,
-            100% {
-                transform: translateY(0);
-            }
+    position:absolute;
 
-            50% {
-                transform: translateY(10px);
-            }
+    width:700px;
+    height:700px;
 
-        }
+    right:-250px;
+    top:50%;
 
+    transform:translateY(-50%);
 
-        /* =========================
-           RESPONSIVE
-        ========================= */
+    background:radial-gradient(
+        circle,
+        rgba(255,202,92,.45),
+        transparent 65%
+    );
 
-        @media(max-width:800px) {
+    animation:
+        brillo 5s ease-in-out infinite alternate;
 
-            .hero {
-                background-attachment: scroll;
-            }
+}
 
-            .location-box {
-                grid-template-columns: 1fr;
-            }
+@keyframes brillo{
 
-            .location-info {
-                text-align: center;
-            }
+    from{
+        opacity:.5;
+        transform:translateY(-50%) scale(.9);
+    }
 
-            section {
-                padding: 70px 15px;
-            }
+    to{
+        opacity:1;
+        transform:translateY(-50%) scale(1.15);
+    }
 
-        }
-    </style>
+}
+
+
+.hero-content{
+
+    position:relative;
+
+    z-index:2;
+
+    max-width:1000px;
+
+    animation:
+        aparecer 2s ease forwards;
+
+}
+
+
+@keyframes aparecer{
+
+    from{
+        opacity:0;
+        transform:translateY(60px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+.logo{
+
+    font-family:'Cinzel',serif;
+
+    letter-spacing:6px;
+
+    font-size:14px;
+
+    margin-bottom:30px;
+
+    opacity:.9;
+
+    animation:
+        aparecerLogo 2s ease .4s both;
+
+}
+
+@keyframes aparecerLogo{
+
+    from{
+        opacity:0;
+        letter-spacing:20px;
+    }
+
+    to{
+        opacity:1;
+        letter-spacing:6px;
+    }
+
+}
+
+
+.subtitle{
+
+    font-family:'Oswald',sans-serif;
+
+    font-size:clamp(20px,4vw,42px);
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+}
+
+
+.amor{
+
+    font-family:'Great Vibes',cursive;
+
+    font-size:clamp(100px,18vw,230px);
+
+    line-height:.85;
+
+    color:#f7ead2;
+
+    text-shadow:
+
+        0 5px 20px rgba(0,0,0,.5),
+        0 0 40px rgba(255,220,150,.15);
+
+    animation:
+
+        aparecerAmor 2s ease .5s both,
+        flotacion 5s ease-in-out 2.5s infinite;
+
+}
+
+
+@keyframes aparecerAmor{
+
+    from{
+        opacity:0;
+        transform:scale(.6);
+        filter:blur(10px);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+        filter:blur(0);
+    }
+
+}
+
+
+@keyframes flotacion{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+
+}
+
+
+.escrito{
+
+    font-family:'Oswald',sans-serif;
+
+    font-size:clamp(22px,4vw,45px);
+
+    letter-spacing:4px;
+
+}
+
+
+.cielo{
+
+    font-family:'Cinzel',serif;
+
+    font-size:clamp(70px,14vw,180px);
+
+    font-weight:800;
+
+    line-height:.9;
+
+    color:#f5e6ca;
+
+    text-shadow:
+
+        0 5px 20px rgba(0,0,0,.6),
+        0 0 30px rgba(255,220,150,.2);
+
+}
+
+
+.verse{
+
+    margin:40px auto 0;
+
+    max-width:850px;
+
+    font-family:'Cinzel',serif;
+
+    font-size:clamp(15px,2vw,23px);
+
+    line-height:1.7;
+
+}
+
+
+.verse strong{
+    color:#f2c86f;
+}
+
+
+.scroll{
+
+    margin-top:55px;
+
+    font-size:12px;
+
+    letter-spacing:4px;
+
+    animation:
+        flecha 2s infinite;
+
+}
+
+
+@keyframes flecha{
+
+    0%,100%{
+        transform:translateY(0);
+        opacity:.5;
+    }
+
+    50%{
+        transform:translateY(12px);
+        opacity:1;
+    }
+
+}
+
+
+/* =====================================================
+   EVENTO
+===================================================== */
+
+.event{
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            #5b2b0e,
+            #1b0803 70%
+        );
+
+}
+
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
+
+    gap:25px;
+
+}
+
+
+.card{
+
+    position:relative;
+
+    padding:40px 25px;
+
+    text-align:center;
+
+    border-radius:22px;
+
+    border:1px solid rgba(230,190,105,.4);
+
+    background:rgba(255,255,255,.055);
+
+    backdrop-filter:blur(12px);
+
+    transition:.5s;
+
+    overflow:hidden;
+
+}
+
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:200px;
+    height:200px;
+
+    background:radial-gradient(
+        circle,
+        rgba(255,207,111,.2),
+        transparent
+    );
+
+    top:-100px;
+    left:-100px;
+
+    transition:.5s;
+
+}
+
+
+.card:hover{
+
+    transform:
+        translateY(-12px)
+        scale(1.02);
+
+    border-color:#e7bd6a;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.45);
+
+}
+
+
+.card:hover::before{
+
+    transform:
+        translate(120px,120px);
+
+}
+
+
+.card-icon{
+
+    font-size:45px;
+
+    margin-bottom:18px;
+
+    animation:
+        icono 3s ease-in-out infinite;
+
+}
+
+
+@keyframes icono{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.12);
+    }
+
+}
+
+
+.card h3{
+
+    font-family:'Cinzel',serif;
+
+    color:#f3ce83;
+
+    margin-bottom:12px;
+
+}
+
+
+.card p{
+
+    line-height:1.7;
+
+}
+
+
+/* =====================================================
+   CONTADOR
+===================================================== */
+
+.countdown-section{
+
+    text-align:center;
+
+    background:
+
+        linear-gradient(
+            rgba(20,7,2,.9),
+            rgba(20,7,2,.9)
+        ),
+
+        url("invitacion.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-attachment:fixed;
+
+}
+
+
+.countdown{
+
+    display:flex;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:20px;
+
+}
+
+
+.time-box{
+
+    min-width:130px;
+
+    padding:28px 18px;
+
+    border-radius:18px;
+
+    border:1px solid #cfa456;
+
+    background:rgba(0,0,0,.3);
+
+    backdrop-filter:blur(10px);
+
+    transition:.4s;
+
+}
+
+
+.time-box:hover{
+
+    transform:
+        translateY(-8px)
+        scale(1.05);
+
+    box-shadow:
+        0 0 30px rgba(224,183,92,.25);
+
+}
+
+
+.time-box span{
+
+    display:block;
+
+    font-family:'Cinzel',serif;
+
+    font-size:48px;
+
+    color:#f5d28b;
+
+}
+
+
+.time-box small{
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+}
+
+
+/* =====================================================
+   VESTIMENTA
+===================================================== */
+
+.dress{
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #f6ead5,
+            #e7cfaa
+        );
+
+    color:#30170a;
+
+    text-align:center;
+
+}
+
+
+.dress .section-title{
+
+    color:#673a18;
+
+}
+
+
+.dress-main{
+
+    font-family:'Cinzel',serif;
+
+    font-size:clamp(25px,4vw,48px);
+
+    color:#7a481e;
+
+    margin:25px 0;
+
+}
+
+
+.dress p{
+
+    font-size:18px;
+
+    line-height:1.8;
+
+}
+
+
+.highlight{
+
+    margin:35px auto 0;
+
+    max-width:700px;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    background:#3c1c0b;
+
+    color:#f8e7c6;
+
+    font-family:'Cinzel',serif;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.2);
+
+}
+
+
+/* =====================================================
+   WHATSAPP
+===================================================== */
+
+.whatsapp-section{
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            #3b210f,
+            #120702
+        );
+
+    text-align:center;
+
+}
+
+
+.whatsapp-intro{
+
+    max-width:700px;
+
+    margin:0 auto 50px;
+
+    line-height:1.8;
+
+    color:#e8d8bd;
+
+}
+
+
+.whatsapp-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+}
+
+
+.whatsapp-card{
+
+    padding:35px 25px;
+
+    border-radius:22px;
+
+    border:1px solid rgba(224,184,99,.4);
+
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(10px);
+
+    transition:.4s;
+
+}
+
+
+.whatsapp-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:#e4bc69;
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.4);
+
+}
+
+
+.whatsapp-icon{
+
+    font-size:48px;
+
+    margin-bottom:15px;
+
+}
+
+
+.whatsapp-card h3{
+
+    font-family:'Cinzel',serif;
+
+    color:#f1cc82;
+
+    margin-bottom:8px;
+
+}
+
+
+.phone{
+
+    font-size:20px;
+
+    margin-bottom:20px;
+
+    letter-spacing:2px;
+
+}
+
+
+.whatsapp-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    padding:14px 25px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    background:#25D366;
+
+    color:white;
+
+    font-weight:700;
+
+    transition:.3s;
+
+    box-shadow:
+        0 8px 25px rgba(37,211,102,.25);
+
+}
+
+
+.whatsapp-btn:hover{
+
+    transform:
+        scale(1.07);
+
+    box-shadow:
+        0 12px 35px rgba(37,211,102,.4);
+
+}
+
+
+/* =====================================================
+   UBICACIÓN
+===================================================== */
+
+.location{
+
+    background:#190a04;
+
+}
+
+
+.location-box{
+
+    display:grid;
+
+    grid-template-columns:1fr 1.3fr;
+
+    gap:35px;
+
+    align-items:stretch;
+
+}
+
+
+.location-info{
+
+    padding:45px;
+
+    border-radius:22px;
+
+    border:1px solid rgba(225,184,97,.4);
+
+    background:
+
+        linear-gradient(
+            135deg,
+            rgba(88,43,16,.8),
+            rgba(20,8,3,.9)
+        );
+
+}
+
+
+.location-info h3{
+
+    font-family:'Cinzel',serif;
+
+    color:#f3ce83;
+
+    font-size:30px;
+
+    margin-bottom:20px;
+
+}
+
+
+.location-info p{
+
+    line-height:1.8;
+
+    margin-bottom:15px;
+
+}
+
+
+.map{
+
+    overflow:hidden;
+
+    border-radius:22px;
+
+    border:2px solid rgba(225,184,97,.5);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.4);
+
+}
+
+
+.map iframe{
+
+    width:100%;
+
+    height:450px;
+
+    display:block;
+
+}
+
+
+.map-btn{
+
+    display:inline-block;
+
+    margin-top:20px;
+
+    padding:15px 30px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    color:#2a1408;
+
+    background:#d9ad58;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+
+.map-btn:hover{
+
+    transform:scale(1.06);
+
+    background:#f0c870;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    padding:80px 20px;
+
+    text-align:center;
+
+    background:#0c0402;
+
+}
+
+
+footer h2{
+
+    font-family:'Great Vibes',cursive;
+
+    font-size:clamp(50px,8vw,90px);
+
+    color:#e8ca8b;
+
+    animation:
+        flotacion 5s infinite;
+
+}
+
+
+footer p{
+
+    margin-top:15px;
+
+    opacity:.75;
+
+    line-height:1.8;
+
+}
+
+
+/* =====================================================
+   BOTÓN FLOTANTE WHATSAPP
+===================================================== */
+
+.floating-whatsapp{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    width:65px;
+    height:65px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:#25D366;
+
+    color:white;
+
+    font-size:32px;
+
+    text-decoration:none;
+
+    z-index:200;
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.4);
+
+    animation:
+        whatsappPulse 2s infinite;
+
+}
+
+
+@keyframes whatsappPulse{
+
+    0%{
+        box-shadow:
+            0 0 0 0 rgba(37,211,102,.6);
+    }
+
+    70%{
+        box-shadow:
+            0 0 0 18px rgba(37,211,102,0);
+    }
+
+    100%{
+        box-shadow:
+            0 0 0 0 rgba(37,211,102,0);
+    }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:800px){
+
+    section{
+        padding:75px 15px;
+    }
+
+    .hero{
+        background-attachment:scroll;
+    }
+
+    .location-box{
+        grid-template-columns:1fr;
+    }
+
+    .location-info{
+        text-align:center;
+        padding:30px 20px;
+    }
+
+    .map iframe{
+        height:350px;
+    }
+
+    .time-box{
+        min-width:105px;
+    }
+
+    .time-box span{
+        font-size:38px;
+    }
+
+}
+
+</style>
 </head>
 
 
 <body>
 
 
-    <!-- =========================
+<!-- =====================================================
+     PARTÍCULAS
+===================================================== -->
+
+<div class="particles">
+
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+</div>
+
+
+
+<!-- =====================================================
      PORTADA
-========================= -->
+===================================================== -->
 
-    <header class="hero">
+<header class="hero">
 
-        <div class="hero-content">
+    <div class="hero-content">
 
-            <div class="logo">
-                IASD PACAJES
-            </div>
-
-            <div class="subtitle">
-                Cena de Gala
-            </div>
-
-            <div class="amor">
-                Amor
-            </div>
-
-            <div class="escrito">
-                ESCRITO EN EL
-            </div>
-
-            <div class="cielo">
-                CIELO
-            </div>
-
-
-            <p class="verse">
-
-                <strong>Rut 1:16</strong><br>
-
-                “Porque a dondequiera que tú fueres, iré yo;
-                y dondequiera que vivieres, viviré.”
-
-            </p>
-
-
-            <div class="scroll">
-                ↓ DESCUBRE LA INVITACIÓN ↓
-            </div>
-
-        </div>
-
-    </header>
-
-
-
-    <!-- =========================
-     EVENTO
-========================= -->
-
-    <section class="event">
-
-        <div class="container">
-
-            <h2 class="section-title">
-                Una noche especial
-            </h2>
-
-            <div class="section-line"></div>
-
-
-            <div class="cards">
-
-
-                <div class="card">
-
-                    <div class="card-icon">📅</div>
-
-                    <h3>Fecha</h3>
-
-                    <p>
-                        20 de Septiembre
-                    </p>
-
-                </div>
-
-
-
-                <div class="card">
-
-                    <div class="card-icon">🕕</div>
-
-                    <h3>Hora</h3>
-
-                    <p>
-                        18:00 PM
-                    </p>
-
-                </div>
-
-
-
-                <div class="card">
-
-                    <div class="card-icon">💰</div>
-
-                    <h3>Entrada</h3>
-
-                    <p>
-                        Individual<br>
-                        <strong>Bs. 70</strong>
-                    </p>
-
-                </div>
-
-
-
-                <div class="card">
-
-                    <div class="card-icon">❤️</div>
-
-                    <h3>En Pareja</h3>
-
-                    <p>
-                        Pareja<br>
-                        <strong>Bs. 140</strong>
-                    </p>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-     CONTADOR
-========================= -->
-
-    <section class="countdown-section">
-
-        <div class="container">
-
-            <h2 class="section-title">
-                Faltan...
-            </h2>
-
-            <div class="section-line"></div>
-
-
-            <div class="countdown">
-
-                <div class="time-box">
-                    <span id="days">00</span>
-                    <small>Días</small>
-                </div>
-
-
-                <div class="time-box">
-                    <span id="hours">00</span>
-                    <small>Horas</small>
-                </div>
-
-
-                <div class="time-box">
-                    <span id="minutes">00</span>
-                    <small>Minutos</small>
-                </div>
-
-
-                <div class="time-box">
-                    <span id="seconds">00</span>
-                    <small>Segundos</small>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-     VESTIMENTA
-========================= -->
-
-    <section class="dress">
-
-        <div class="container">
-
-            <h2 class="section-title">
-                Vestimenta
-            </h2>
-
-            <div class="section-line"></div>
-
-
-            <div class="dress-content">
-
-                <p>
-                    En relación a la temática:
-                </p>
-
-
-                <div class="dress-main">
-                    “AMOR EN TIEMPOS BÍBLICOS”
-                </div>
-
-
-                <p>
-                    🏆 Se premiará a las <strong>4 parejas</strong>
-                    con la mejor vestimenta de época.
-                </p>
-
-
-                <div class="highlight">
-
-                    ¡Prepárate para vivir una experiencia
-                    especial, elegante y llena de significado!
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-     UBICACIÓN
-========================= -->
-
-    <section class="location">
-
-        <div class="container">
-
-            <h2 class="section-title">
-                Ubicación
-            </h2>
-
-            <div class="section-line"></div>
-
-
-            <div class="location-box">
-
-
-                <div class="location-info">
-
-                    <h3>
-                        📍 Salón de Eventos
-                    </h3>
-
-
-                    <p>
-
-                        <strong>MAGNATE VINZ</strong>
-
-                    </p>
-
-
-                    <p>
-
-                        Te esperamos para compartir una noche
-                        especial de amistad, amor, fe y comunión.
-
-                    </p>
-
-
-                    <a class="btn" href="https://maps.app.goo.gl/1dCnkk5MiB45uyJ7A?g_st=aw" target="_blank">
-
-                        📍 Abrir en Google Maps
-
-                    </a>
-
-                </div>
-
-
-
-                <div class="map">
-
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3824.9250313554016!2d-68.192059!3d-16.529882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTbCsDMxJzQ3LjYiUyA2OMKwMTEnMzEuNCJX!5e0!3m2!1ses-419!2sbo!4v1789098051502!5m2!1ses-419!2sbo"
-                        allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
-                    </iframe>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-     CIERRE
-========================= -->
-
-    <footer>
-
-        <h2>
-            Amor escrito en el Cielo
-        </h2>
-
-        <p>
-
-            Una noche para recordar que las mejores historias
-            comienzan cuando Dios escribe el camino.
-
-        </p>
-
-
-        <p style="margin-top:20px;">
-
+        <div class="logo">
             IASD PACAJES
+        </div>
+
+        <div class="subtitle">
+            Cena de Gala
+        </div>
+
+        <div class="amor">
+            Amor
+        </div>
+
+        <div class="escrito">
+            ESCRITO EN EL
+        </div>
+
+        <div class="cielo">
+            CIELO
+        </div>
+
+        <p class="verse">
+
+            <strong>Rut 1:16</strong><br>
+
+            “Porque a dondequiera que tú fueres, iré yo;
+            y dondequiera que vivieres, viviré.”
 
         </p>
 
-    </footer>
+        <div class="scroll">
+            ↓ DESCUBRE LA INVITACIÓN ↓
+        </div>
+
+    </div>
+
+</header>
 
 
 
-    <!-- =========================
+<!-- =====================================================
+     INFORMACIÓN
+===================================================== -->
+
+<section class="event">
+
+<div class="container">
+
+<h2 class="section-title">
+    Una noche especial
+</h2>
+
+<div class="section-line"></div>
+
+
+<div class="cards">
+
+
+<div class="card">
+
+<div class="card-icon">📅</div>
+
+<h3>Fecha</h3>
+
+<p>
+20 de Septiembre
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-icon">🕕</div>
+
+<h3>Hora</h3>
+
+<p>
+18:00 PM
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-icon">💰</div>
+
+<h3>Individual</h3>
+
+<p>
+Bs. 70
+</p>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-icon">❤️</div>
+
+<h3>Pareja</h3>
+
+<p>
+Bs. 130
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTADOR
+===================================================== -->
+
+<section class="countdown-section">
+
+<div class="container">
+
+<h2 class="section-title">
+    Faltan...
+</h2>
+
+<div class="section-line"></div>
+
+
+<div class="countdown">
+
+<div class="time-box">
+
+<span id="days">00</span>
+
+<small>Días</small>
+
+</div>
+
+
+<div class="time-box">
+
+<span id="hours">00</span>
+
+<small>Horas</small>
+
+</div>
+
+
+<div class="time-box">
+
+<span id="minutes">00</span>
+
+<small>Minutos</small>
+
+</div>
+
+
+<div class="time-box">
+
+<span id="seconds">00</span>
+
+<small>Segundos</small>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     VESTIMENTA
+===================================================== -->
+
+<section class="dress">
+
+<div class="container">
+
+<h2 class="section-title">
+    Vestimenta
+</h2>
+
+<div class="section-line"></div>
+
+
+<p>
+En relación a la temática:
+</p>
+
+
+<div class="dress-main">
+
+“AMOR EN TIEMPOS BÍBLICOS”
+
+</div>
+
+
+<p>
+
+🏆 Se premiará a las
+<strong>4 parejas</strong>
+con la mejor vestimenta de época.
+
+</p>
+
+
+<div class="highlight">
+
+Prepárate para vivir una noche
+especial, elegante y llena de significado.
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     WHATSAPP
+===================================================== -->
+
+<section class="whatsapp-section">
+
+<div class="container">
+
+<h2 class="section-title">
+    Más información
+</h2>
+
+<div class="section-line"></div>
+
+
+<p class="whatsapp-intro">
+
+¿Tienes alguna consulta sobre la cena,
+las entradas, la vestimenta o la ubicación?
+
+Comunícate directamente con cualquiera
+de nuestros responsables.
+
+</p>
+
+
+<div class="whatsapp-grid">
+
+
+<!-- 69764891 -->
+
+<div class="whatsapp-card">
+
+<div class="whatsapp-icon">
+    💬
+</div>
+
+<h3>
+    Información
+</h3>
+
+<div class="phone">
+    69764891
+</div>
+
+<a
+    class="whatsapp-btn"
+    href="https://wa.me/59169764891?text=Hola,%20quisiera%20recibir%20más%20información%20sobre%20la%20Cena%20de%20Gala%20'Amor%20escrito%20en%20el%20Cielo'."
+    target="_blank">
+
+    WhatsApp
+</a>
+
+</div>
+
+
+
+<!-- 75231649 -->
+
+<div class="whatsapp-card">
+
+<div class="whatsapp-icon">
+    💬
+</div>
+
+<h3>
+    Información
+</h3>
+
+<div class="phone">
+    75231649
+</div>
+
+<a
+    class="whatsapp-btn"
+    href="https://wa.me/59175231649?text=Hola,%20quisiera%20recibir%20más%20información%20sobre%20la%20Cena%20de%20Gala%20'Amor%20escrito%20en%20el%20Cielo'."
+    target="_blank">
+
+    WhatsApp
+</a>
+
+</div>
+
+
+
+<!-- 67036446 -->
+
+<div class="whatsapp-card">
+
+<div class="whatsapp-icon">
+    💬
+</div>
+
+<h3>
+    Información
+</h3>
+
+<div class="phone">
+    67036446
+</div>
+
+<a
+    class="whatsapp-btn"
+    href="https://wa.me/59167036446?text=Hola,%20quisiera%20recibir%20más%20información%20sobre%20la%20Cena%20de%20Gala%20'Amor%20escrito%20en%20el%20Cielo'."
+    target="_blank">
+
+    WhatsApp
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     UBICACIÓN
+===================================================== -->
+
+<section class="location">
+
+<div class="container">
+
+<h2 class="section-title">
+    ¿Dónde será?
+</h2>
+
+<div class="section-line"></div>
+
+
+<div class="location-box">
+
+
+<div class="location-info">
+
+<h3>
+    📍 Salón de Eventos
+</h3>
+
+
+<p>
+
+<strong>
+MAGNATE VINZ
+</strong>
+
+</p>
+
+
+<p>
+
+Te esperamos para compartir
+una noche especial de amistad,
+amor, fe y comunión.
+
+</p>
+
+
+<p>
+
+📅 <strong>20 de Septiembre</strong><br>
+
+🕕 <strong>18:00 PM</strong>
+
+</p>
+
+
+<a
+    class="map-btn"
+    href="https://maps.app.goo.gl/1dCnkk5MiB45uyJ7A?g_st=aw"
+    target="_blank">
+
+    📍 Abrir en Google Maps
+
+</a>
+
+</div>
+
+
+
+<div class="map">
+
+<iframe
+src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3824.9250313554016!2d-68.192059!3d-16.529882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTbCsDMxJzQ3LjYiUyA2OMKwMTEnMzEuNCJX!5e0!3m2!1ses-419!2sbo!4v1789098051502!5m2!1ses-419!2sbo"
+allowfullscreen=""
+loading="lazy"
+referrerpolicy="strict-origin-when-cross-origin">
+</iframe>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FINAL
+===================================================== -->
+
+<footer>
+
+<h2>
+    Amor escrito en el Cielo
+</h2>
+
+<p>
+Una noche para recordar que las mejores historias
+comienzan cuando Dios escribe el camino.
+</p>
+
+<p>
+IASD PACAJES
+</p>
+
+</footer>
+
+
+
+<!-- =====================================================
+     WHATSAPP FLOTANTE
+===================================================== -->
+
+<a
+    class="floating-whatsapp"
+    href="https://wa.me/59169764891?text=Hola,%20quisiera%20recibir%20información%20sobre%20la%20Cena%20de%20Gala."
+    target="_blank"
+    title="Contactar por WhatsApp">
+
+    ☎
+
+</a>
+
+
+
+<!-- =====================================================
      JAVASCRIPT
-========================= -->
+===================================================== -->
 
-    <script>
+<script>
 
-        // FECHA DEL EVENTO
-        // 20 DE SEPTIEMBRE DE 2026 - 18:00
+/* =====================================================
+   CONTADOR
+===================================================== */
 
-        const eventDate = new Date(
-            "September 20, 2026 18:00:00"
-        ).getTime();
-
-
-        function updateCountdown() {
-
-            const now = new Date().getTime();
-
-            const distance = eventDate - now;
+const eventDate =
+new Date("September 20, 2026 18:00:00").getTime();
 
 
-            if (distance < 0) {
+function updateCountdown(){
 
-                document.querySelector(".countdown").innerHTML =
-                    "<h2>¡El evento ha comenzado!</h2>";
+    const now =
+    new Date().getTime();
 
-                return;
-            }
-
-
-            const days = Math.floor(
-                distance / (1000 * 60 * 60 * 24)
-            );
+    const distance =
+    eventDate - now;
 
 
-            const hours = Math.floor(
-                (distance % (1000 * 60 * 60 * 24))
-                / (1000 * 60 * 60)
-            );
+    if(distance <= 0){
+
+        document.querySelector(".countdown").innerHTML =
+
+        `
+        <h2>
+            ✨ ¡La cena ha comenzado! ✨
+        </h2>
+        `;
+
+        return;
+
+    }
 
 
-            const minutes = Math.floor(
-                (distance % (1000 * 60 * 60))
-                / (1000 * 60)
-            );
+    const days =
+    Math.floor(
+        distance /
+        (1000 * 60 * 60 * 24)
+    );
 
 
-            const seconds = Math.floor(
-                (distance % (1000 * 60))
-                / 1000
-            );
+    const hours =
+    Math.floor(
+        (distance %
+        (1000 * 60 * 60 * 24))
+        /
+        (1000 * 60 * 60)
+    );
 
 
-            document.getElementById("days").innerHTML =
-                String(days).padStart(2, "0");
+    const minutes =
+    Math.floor(
+        (distance %
+        (1000 * 60 * 60))
+        /
+        (1000 * 60)
+    );
 
 
-            document.getElementById("hours").innerHTML =
-                String(hours).padStart(2, "0");
+    const seconds =
+    Math.floor(
+        (distance %
+        (1000 * 60))
+        /
+        1000
+    );
 
 
-            document.getElementById("minutes").innerHTML =
-                String(minutes).padStart(2, "0");
+    document.getElementById("days").textContent =
+    String(days).padStart(2,"0");
 
 
-            document.getElementById("seconds").innerHTML =
-                String(seconds).padStart(2, "0");
-
-        }
+    document.getElementById("hours").textContent =
+    String(hours).padStart(2,"0");
 
 
-        updateCountdown();
+    document.getElementById("minutes").textContent =
+    String(minutes).padStart(2,"0");
 
-        setInterval(
-            updateCountdown,
-            1000
-        );
 
-    </script>
+    document.getElementById("seconds").textContent =
+    String(seconds).padStart(2,"0");
+
+}
+
+
+updateCountdown();
+
+setInterval(
+    updateCountdown,
+    1000
+);
+
+
+/* =====================================================
+   EFECTO PARALLAX SUAVE
+===================================================== */
+
+window.addEventListener("scroll",()=>{
+
+    const hero =
+    document.querySelector(".hero");
+
+    const scroll =
+    window.scrollY;
+
+    hero.style.backgroundPosition =
+    `center ${50 + scroll * 0.03}%`;
+
+});
+
+
+</script>
 
 
 </body>
-
 </html>
