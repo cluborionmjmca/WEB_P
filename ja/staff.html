@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100503">
+<title>Staff | Amor escrito en el cielo</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#100503;--panel:#211009;--panel2:#2c1309;
+  --gold:#d8ad60;--gold2:#f3dca8;--cream:#fff4df;
+  --muted:#cbb89a;--danger:#b45b4d;--line:rgba(216,173,96,.3);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh;color:var(--cream);font-family:Montserrat,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(181,111,35,.18),transparent 35%),
+    linear-gradient(180deg,#100503,#1c0804 50%,#0c0302);
+}
+#stars{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.star{position:absolute;width:3px;height:3px;border-radius:50%;background:#ffe8b0;opacity:.3;animation:twinkle 3s infinite}
+@keyframes twinkle{0%,100%{opacity:.1}50%{opacity:.8;transform:scale(1.5)}}
+
+.login{
+  min-height:100vh;display:grid;place-items:center;padding:25px;
+  position:relative;z-index:1
+}
+.login-box{
+  width:min(440px,100%);padding:42px 32px;text-align:center;
+  border:1px solid var(--line);border-radius:28px;
+  background:linear-gradient(145deg,rgba(69,29,12,.8),rgba(20,6,3,.95));
+  box-shadow:0 30px 90px rgba(0,0,0,.6);
+}
+.logo{font-size:48px;margin-bottom:12px;animation:float 4s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.login h1{font-family:"Playfair Display",serif;font-weight:500;font-size:35px}
+.login h1 span{display:block;font-family:"Cormorant Garamond",serif;font-size:22px;color:var(--gold2);margin-top:5px}
+.login p{font-size:11px;color:var(--muted);line-height:1.7;margin:18px 0 25px}
+input{
+  width:100%;padding:14px 16px;border-radius:14px;
+  border:1px solid var(--line);background:rgba(10,3,1,.7);
+  color:white;outline:none;text-align:center;letter-spacing:3px;
+}
+input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(216,173,96,.08)}
+.btn{
+  border:0;border-radius:999px;padding:14px 20px;cursor:pointer;
+  font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  transition:.3s
+}
+.btn-gold{width:100%;margin-top:13px;background:linear-gradient(135deg,#b98231,#edcc84);color:#281006}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(216,173,96,.25)}
+.error{color:#e39a8e;font-size:11px;margin-top:12px;min-height:16px}
+
+.dashboard{display:none;position:relative;z-index:1}
+.dashboard.active{display:block}
+header{
+  position:sticky;top:0;z-index:10;
+  background:rgba(16,5,3,.88);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);padding:17px 4vw;
+  display:flex;justify-content:space-between;align-items:center;gap:15px
+}
+.brand h1{font-family:"Playfair Display",serif;font-size:25px;font-weight:500}
+.brand p{font-size:9px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-top:3px}
+.logout{border:1px solid var(--line);background:transparent;color:var(--gold2);padding:9px 13px;border-radius:999px;font-size:9px;text-transform:uppercase;letter-spacing:1px;cursor:pointer}
+.logout:hover{background:rgba(216,173,96,.1)}
+
+main{width:min(1200px,92%);margin:auto;padding:35px 0 70px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:25px}
+.stat{
+  border:1px solid var(--line);border-radius:18px;padding:20px;
+  background:linear-gradient(145deg,rgba(66,28,12,.6),rgba(26,8,4,.8))
+}
+.stat small{display:block;color:#a99273;font-size:9px;letter-spacing:1px;text-transform:uppercase}
+.stat strong{display:block;color:var(--gold2);font-family:"Cormorant Garamond",serif;font-size:31px;margin-top:3px}
+.toolbar{
+  display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between;
+  margin-bottom:18px
+}
+.search{flex:1;min-width:230px;text-align:left;letter-spacing:0}
+select{
+  border:1px solid var(--line);border-radius:12px;background:#241006;color:var(--cream);
+  padding:12px;font-size:11px;outline:none
+}
+.refresh{border:1px solid var(--line);background:rgba(216,173,96,.08);color:var(--gold2);padding:11px 15px;border-radius:12px;cursor:pointer;font-size:10px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.card{
+  border:1px solid var(--line);border-radius:20px;padding:21px;
+  background:linear-gradient(145deg,rgba(57,23,10,.7),rgba(21,6,3,.9));
+  box-shadow:0 15px 40px rgba(0,0,0,.2);
+  animation:cardIn .45s ease both
+}
+@keyframes cardIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.card-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.badge{
+  display:inline-block;padding:5px 9px;border-radius:999px;
+  background:rgba(216,173,96,.11);border:1px solid rgba(216,173,96,.25);
+  color:var(--gold2);font-size:9px
+}
+.time{font-size:9px;color:#927d62;text-align:right}
+.recipient{margin-top:15px;font-family:"Cormorant Garamond",serif;color:var(--gold2);font-size:23px}
+.from{font-size:10px;color:#aa967a;margin-top:2px}
+.message{
+  margin-top:13px;padding:15px;border-radius:14px;
+  background:rgba(8,2,1,.35);border-left:2px solid var(--gold);
+  color:#ead9bd;font-family:"Cormorant Garamond",serif;font-size:19px;line-height:1.45;
+  white-space:pre-wrap;word-break:break-word
+}
+.actions{display:flex;gap:8px;margin-top:13px}
+.action{
+  flex:1;border:1px solid var(--line);background:transparent;color:#cdbb9f;
+  border-radius:10px;padding:9px;font-size:9px;text-transform:uppercase;letter-spacing:.8px;cursor:pointer
+}
+.action:hover{background:rgba(216,173,96,.08)}
+.action.delete{color:#d38b7f;border-color:rgba(180,91,77,.35)}
+.empty{text-align:center;padding:70px 20px;color:#927d62;grid-column:1/-1}
+.empty div{font-size:50px;margin-bottom:10px}
+
+.notice{
+  border:1px solid rgba(216,173,96,.2);border-radius:15px;
+  padding:14px;margin-bottom:20px;background:rgba(216,173,96,.05);
+  color:#bba88c;font-size:10px;line-height:1.7
+}
+.notice strong{color:var(--gold2)}
+
+@media(max-width:800px){
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .grid{grid-template-columns:1fr}
+}
+@media(max-width:500px){
+  header{padding:14px 18px}
+  .brand h1{font-size:20px}
+  main{width:calc(100% - 24px)}
+  .stats{gap:8px}
+  .stat{padding:14px}
+}
+</style>
+</head>
+
+<body>
+<div id="stars"></div>
+
+<section class="login" id="login">
+  <div class="login-box">
+    <div class="logo">🌌</div>
+    <h1>Panel del Staff <span>Amor escrito en el cielo</span></h1>
+    <p>
+      Área privada para el equipo de la Cena de Gala.<br>
+      Aquí podrán visualizar las dedicatorias recibidas.
+    </p>
+    <form id="loginForm">
+      <input id="password" type="password" placeholder="CONTRASEÑA" autocomplete="current-password" required>
+      <button class="btn btn-gold" type="submit">🔐 Entrar al panel</button>
+      <div class="error" id="error"></div>
+    </form>
+  </div>
+</section>
+
+<section class="dashboard" id="dashboard">
+  <header>
+    <div class="brand">
+      <h1>🌌 Panel del Staff</h1>
+      <p>Amor escrito en el cielo · IASD Pacajes</p>
+    </div>
+    <button class="logout" id="logout">Cerrar sesión</button>
+  </header>
+
+  <main>
+    <div class="notice">
+      <strong>⚠️ Versión de prueba:</strong>
+      este panel lee las dedicatorias guardadas en el navegador mediante
+      <code>localStorage</code>. Todavía no es una base de datos online.
+      Cuando conectemos Supabase, los mensajes podrán verse desde cualquier dispositivo autorizado.
+    </div>
+
+    <div class="stats">
+      <div class="stat"><small>Total</small><strong id="total">0</strong></div>
+      <div class="stat"><small>Hoy</small><strong id="today">0</strong></div>
+      <div class="stat"><small>Anónimas</small><strong id="anonymous">0</strong></div>
+      <div class="stat"><small>Último mensaje</small><strong id="last">—</strong></div>
+    </div>
+
+    <div class="toolbar">
+      <input class="search" id="search" type="search" placeholder="🔎 Buscar nombre, destinatario o mensaje...">
+      <select id="filter">
+        <option value="all">Todas</option>
+        <option value="💕 Mi pareja">Mi pareja</option>
+        <option value="🌹 Alguien especial">Alguien especial</option>
+        <option value="👨‍👩‍👧 Mi familia">Familia</option>
+        <option value="🤝 Un amigo / amiga">Amigos</option>
+        <option value="🙏 Dios">Dios</option>
+        <option value="🤫 Alguien, de forma anónima">Anónimas</option>
+      </select>
+      <button class="refresh" id="refresh">↻ Actualizar</button>
+    </div>
+
+    <div class="grid" id="messages"></div>
+  </main>
+</section>
+
+<script>
+/*
+  CONTRASEÑA DE DEMOSTRACIÓN:
+  Cambia DEMO_PASSWORD por la contraseña que quieras usar mientras pruebas.
+  IMPORTANTE: esta contraseña NO es seguridad real porque está dentro del HTML.
+  La seguridad real se implementará al conectar el panel con Supabase.
+*/
+const DEMO_PASSWORD = "staff2026";
+
+const login=document.getElementById("login");
+const dashboard=document.getElementById("dashboard");
+const loginForm=document.getElementById("loginForm");
+const error=document.getElementById("error");
+
+function enterPanel(){
+  login.style.display="none";
+  dashboard.classList.add("active");
+  render();
+}
+
+loginForm.addEventListener("submit",(e)=>{
+  e.preventDefault();
+  if(document.getElementById("password").value===DEMO_PASSWORD){
+    sessionStorage.setItem("staffLogged","true");
+    error.textContent="";
+    enterPanel();
+  }else{
+    error.textContent="Contraseña incorrecta.";
+    document.getElementById("password").value="";
+  }
+});
+
+document.getElementById("logout").addEventListener("click",()=>{
+  sessionStorage.removeItem("staffLogged");
+  dashboard.classList.remove("active");
+  login.style.display="grid";
+  document.getElementById("password").value="";
+});
+
+function getMessages(){
+  try{
+    return JSON.parse(localStorage.getItem("cenaGalaDedications") || "[]");
+  }catch(e){return []}
+}
+
+function escapeHTML(value){
+  return String(value ?? "").replace(/[&<>"']/g,c=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[c]));
+}
+
+function formatDate(iso){
+  const d=new Date(iso);
+  if(Number.isNaN(d.getTime())) return "Fecha desconocida";
+  return d.toLocaleString("es-BO",{
+    day:"2-digit",month:"2-digit",year:"numeric",
+    hour:"2-digit",minute:"2-digit"
+  });
+}
+
+function render(){
+  let messages=getMessages().sort((a,b)=>new Date(b.date)-new Date(a.date));
+
+  const query=document.getElementById("search").value.toLowerCase().trim();
+  const filter=document.getElementById("filter").value;
+
+  document.getElementById("total").textContent=messages.length;
+
+  const todayKey=new Date().toLocaleDateString("es-BO");
+  const today=messages.filter(m=>new Date(m.date).toLocaleDateString("es-BO")===todayKey).length;
+  document.getElementById("today").textContent=today;
+
+  document.getElementById("anonymous").textContent=
+    messages.filter(m=>m.anonymous || m.name==="Anónimo").length;
+
+  document.getElementById("last").textContent=messages.length ?
+    new Date(messages[0].date).toLocaleTimeString("es-BO",{hour:"2-digit",minute:"2-digit"}) : "—";
+
+  messages=messages.filter(m=>{
+    const haystack=[
+      m.name,m.recipient,m.type,m.message
+    ].join(" ").toLowerCase();
+
+    return (!query || haystack.includes(query)) &&
+           (filter==="all" || m.type===filter);
+  });
+
+  const container=document.getElementById("messages");
+
+  if(!messages.length){
+    container.innerHTML='<div class="empty"><div>💌</div><p>No hay dedicatorias que coincidan.</p></div>';
+    return;
+  }
+
+  container.innerHTML=messages.map((m,index)=>{
+    const originalIndex=getMessages().findIndex(x=>x.date===m.date && x.message===m.message);
+    return `
+      <article class="card" style="animation-delay:${Math.min(index*45,400)}ms">
+        <div class="card-head">
+          <span class="badge">${escapeHTML(m.type || "Dedicatoria")}</span>
+          <span class="time">${escapeHTML(formatDate(m.date))}</span>
+        </div>
+        <div class="recipient">${m.recipient ? "Para: "+escapeHTML(m.recipient) : "Para alguien especial"}</div>
+        <div class="from">De: ${escapeHTML(m.name || "Anónimo")}</div>
+        <div class="message">${escapeHTML(m.message)}</div>
+        <div class="actions">
+          <button class="action" onclick="copyMessage(${originalIndex})">📋 Copiar</button>
+          <button class="action delete" onclick="deleteMessage(${originalIndex})">🗑 Ocultar</button>
+        </div>
+      </article>
+    `;
+  }).join("");
+}
+
+window.copyMessage=function(index){
+  const messages=getMessages();
+  if(!messages[index]) return;
+  const m=messages[index];
+  const text=`Para: ${m.recipient || "Alguien especial"}\nDe: ${m.name || "Anónimo"}\n\n${m.message}`;
+  navigator.clipboard?.writeText(text).then(()=>{
+    alert("Dedicatoria copiada.");
+  }).catch(()=>alert(text));
+};
+
+window.deleteMessage=function(index){
+  if(!confirm("¿Ocultar esta dedicatoria del panel de prueba?")) return;
+  const messages=getMessages();
+  messages.splice(index,1);
+  localStorage.setItem("cenaGalaDedications",JSON.stringify(messages));
+  render();
+};
+
+document.getElementById("search").addEventListener("input",render);
+document.getElementById("filter").addEventListener("change",render);
+document.getElementById("refresh").addEventListener("click",render);
+
+if(sessionStorage.getItem("staffLogged")==="true") enterPanel();
+
+/* Estrellas */
+const stars=document.getElementById("stars");
+for(let i=0;i<55;i++){
+  const s=document.createElement("span");
+  s.className="star";
+  s.style.left=Math.random()*100+"%";
+  s.style.top=Math.random()*100+"%";
+  s.style.animationDelay=Math.random()*4+"s";
+  s.style.animationDuration=(2.2+Math.random()*3)+"s";
+  stars.appendChild(s);
+}
+</script>
+</body>
+</html>
