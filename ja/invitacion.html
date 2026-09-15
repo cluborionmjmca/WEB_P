@@ -9,7 +9,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -63,10 +63,11 @@ button{font:inherit}
 .hero{
   min-height:100svh;
   position:relative;z-index:1;
-  display:flex;align-items:flex-end;justify-content:center;
-  padding:90px 20px 55px;
+  display:flex;align-items:center;justify-content:center;
+  padding:80px 20px 55px;
   background:
-    linear-gradient(180deg,rgba(8,3,1,.15),rgba(8,3,1,.45) 60%,rgba(12,4,2,.97)),
+    radial-gradient(circle at 50% 48%,rgba(191,127,48,.13),transparent 34%),
+    linear-gradient(180deg,rgba(8,3,1,.30),rgba(8,3,1,.55) 62%,rgba(12,4,2,.98)),
     url("grrr.png") center top/cover no-repeat;
 }
 .hero::before{
@@ -76,23 +77,70 @@ button{font:inherit}
 }
 .hero-content{position:relative;max-width:1000px;width:100%;text-align:center}
 .eyebrow{
-  font-size:12px;letter-spacing:4px;text-transform:uppercase;
-  color:var(--gold2);margin-bottom:10px;
+  font-family:"Cinzel",serif;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:8px;
+  text-transform:uppercase;
+  color:#f5ead5;
+  margin-bottom:42px;
   animation:fadeUp .9s .2s both;
 }
+.hero-event{
+  font-family:"Oswald",sans-serif;
+  font-size:clamp(30px,5vw,58px);
+  font-weight:500;
+  letter-spacing:5px;
+  line-height:1;
+  color:#fff8eb;
+  text-transform:uppercase;
+  margin-bottom:4px;
+  animation:fadeUp 1s .28s both;
+}
 .hero-title{
-  font-family:"Playfair Display",serif;
-  font-size:clamp(55px,11vw,145px);
-  font-weight:500;line-height:.78;
-  font-style:italic;
-  text-shadow:0 10px 30px rgba(0,0,0,.65);
-  animation:fadeUp 1s .35s both;
+  font-family:"Great Vibes",cursive;
+  font-size:clamp(100px,17vw,215px);
+  font-weight:400;
+  line-height:.82;
+  color:#fff1d1;
+  text-shadow:0 10px 35px rgba(0,0,0,.62);
+  animation:fadeUp 1s .38s both;
 }
 .hero-title strong{
-  display:block;font-family:"Cormorant Garamond",serif;
-  font-style:normal;font-size:.63em;letter-spacing:4px;
-  margin-top:12px;
+  display:block;
+  font-family:"Oswald",sans-serif;
+  font-style:normal;
+  font-size:clamp(48px,8vw,105px);
+  font-weight:500;
+  line-height:.9;
+  letter-spacing:7px;
+  margin-top:44px;
+  color:#fff8eb;
 }
+.hero-cielo{
+  margin-top:-1px;
+  font-family:"Cinzel",Georgia,serif;
+  font-size:clamp(72px,13vw,172px);
+  font-weight:700;
+  line-height:.82;
+  letter-spacing:-4px;
+  color:#fff0ce;
+  text-shadow:0 10px 35px rgba(0,0,0,.65);
+  animation:fadeUp 1s .5s both;
+}
+.hero-verse{
+  margin:46px auto 28px;display:flex;flex-direction:column;gap:12px;
+  max-width:1000px;text-align:center;
+  animation:fadeUp 1s .58s both;
+}
+.hero-verse b{
+  font-family:"Cormorant Garamond",serif;font-size:22px;letter-spacing:2px;color:#dcb35f;
+}
+.hero-verse span{
+  font-family:"Cormorant Garamond",serif;font-size:clamp(15px,2.2vw,23px);
+  line-height:1.4;color:#fff3dd;letter-spacing:.2px;
+}
+.hero-actions{animation:fadeUp 1s .72s both}
 .subtitle{
   margin:18px auto 25px;max-width:700px;
   font-family:"Cormorant Garamond",serif;
@@ -277,7 +325,14 @@ footer strong{display:block;font-family:"Playfair Display",serif;color:var(--gol
 }
 @media(max-width:650px){
   .nav-links{display:none}
-  .hero{min-height:850px;padding-bottom:40px}
+  .hero{min-height:850px;padding:90px 16px 45px}
+  .eyebrow{letter-spacing:5px;margin-bottom:25px}
+  .hero-event{font-size:clamp(28px,8vw,43px);letter-spacing:3px}
+  .hero-title{font-size:clamp(88px,25vw,150px)}
+  .hero-title strong{font-size:clamp(40px,11vw,68px);letter-spacing:4px;margin-top:35px}
+  .hero-cielo{font-size:clamp(67px,21vw,120px);letter-spacing:-2px}
+  .hero-verse{margin-top:38px}
+  .hero-actions{margin-top:5px}
   .details,.contacts{grid-template-columns:1fr}
   section{padding:70px 20px}
   .card{padding:25px 18px}
@@ -305,9 +360,11 @@ footer strong{display:block;font-family:"Playfair Display",serif;color:var(--gol
 
 <header class="hero">
   <div class="hero-content">
-    <div class="eyebrow">Gran Cena de Gala · IASD Pacajes</div>
-    <h1 class="hero-title">Amor <strong>escrito en el cielo</strong></h1>
-    <p class="subtitle">Una noche para celebrar el amor, la amistad, la fe y las historias que Dios escribe en nuestro camino.</p>
+    <div class="eyebrow">IASD PACAJES</div>
+    <div class="hero-event">CENA DE GALA</div>
+    <h1 class="hero-title">Amor <strong>ESCRITO EN EL</strong></h1>
+    <div class="hero-cielo">CIELO</div>
+    <div class="hero-verse"><b>RUT 1:16</b><span>“PORQUE A DONDEQUIERA QUE TÚ FUERES, IRÉ YO; Y DONDEQUIERA QUE VIVIERES, VIVIRÉ.”</span></div>
     <div class="hero-actions">
       <a class="btn btn-gold" href="#detalles">✨ Ver detalles</a>
       <a class="btn btn-outline" href="#dedicatoria">💌 Dejar dedicatoria</a>
