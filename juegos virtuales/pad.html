@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#090314">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Mando Arcade Móvil | ORIÓN</title>
+  <link rel="stylesheet" href="pad.css">
+</head>
+<body>
+
+  <!-- Retro Scanlines Effect -->
+  <div class="pad-scanlines"></div>
+
+  <!-- Manual PIN Connect Dialog (if opened directly without QR) -->
+  <div class="connect-dialog-overlay" id="connect-overlay">
+    <div class="connect-box">
+      <h2 class="connect-title">🎮 CONECTAR MANDO</h2>
+      <p class="connect-desc">
+        Ingresa el código PIN de 4 caracteres que aparece en la pantalla de la computadora:
+      </p>
+      <input type="text" id="pin-input" class="pin-input" placeholder="EJ: ORI-88" maxlength="8" autocomplete="off" autocorrect="off">
+      <button type="button" id="connect-btn" class="connect-btn">CONECTAR AL JUEGO</button>
+    </div>
+  </div>
+
+  <!-- Main Gamepad Interface -->
+  <main class="gamepad-viewport">
+    
+    <!-- Top System & Room Status Bar -->
+    <header class="pad-top-bar">
+      <div class="room-badge">
+        <span class="conn-status-dot" id="status-dot"></span>
+        <span id="room-display">SALA: CONECTANDO...</span>
+      </div>
+
+      <div style="display:flex; gap:0.5rem;">
+        <button type="button" id="btn-vibra" class="top-pad-btn">📳 VIBRA: ON</button>
+        <button type="button" id="btn-fullscreen" class="top-pad-btn">⛶ PANTALLA</button>
+      </div>
+    </header>
+
+    <!-- Orientation Tip on Portrait -->
+    <div class="orientation-tip-banner">
+      💡 Tip: Gira tu teléfono a horizontal para mayor comodidad tipo consola.
+    </div>
+
+    <!-- Active Touch Controls Area -->
+    <div class="pad-controls-area">
+      
+      <!-- Left Hand: Arcade D-Pad -->
+      <div class="dpad-cluster" id="dpad-cluster">
+        <button type="button" class="dpad-btn dpad-up" id="dpad-up" aria-label="Arriba">▲</button>
+        <button type="button" class="dpad-btn dpad-down" id="dpad-down" aria-label="Abajo">▼</button>
+        <button type="button" class="dpad-btn dpad-left" id="dpad-left" aria-label="Izquierda">◄</button>
+        <button type="button" class="dpad-btn dpad-right" id="dpad-right" aria-label="Derecha">►</button>
+        <div class="dpad-center">ORIÓN</div>
+      </div>
+
+      <!-- Center Console: Start & Pause -->
+      <div class="center-cluster">
+        <button type="button" class="center-btn" id="btn-start">START</button>
+        <button type="button" class="center-btn" id="btn-pause" style="color:var(--color-cyan); border-color:var(--color-cyan);">PAUSE</button>
+      </div>
+
+      <!-- Right Hand: Giant Arcade Fire & Bomb Buttons -->
+      <div class="action-cluster">
+        <button type="button" class="action-btn btn-bomb" id="btn-bomb" aria-label="Bomba o Especial">
+          <span style="font-size:1.3rem; margin-bottom:2px;">💣</span>
+          <span>BOMBA</span>
+        </button>
+        <button type="button" class="action-btn btn-fire" id="btn-fire" aria-label="Disparar Láser">
+          <span style="font-size:1.5rem; margin-bottom:2px;">🔥</span>
+          <span>FIRE</span>
+        </button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Supabase Library & Config -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="pad.js"></script>
+</body>
+</html>
