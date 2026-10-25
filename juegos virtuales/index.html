@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ORIÓN Arcade - Plataforma de Juegos Virtuales en Pixel Art 2D de la Iglesia Adventista del Séptimo Día Pacajes. Diversión sana, retos y aventuras retro.">
+  <title>ORIÓN | Arcade Virtual IASD Pacajes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Parallax Pixel Space Background Canvas -->
+  <canvas id="space-canvas"></canvas>
+
+  <!-- CRT Monitor Scanline Effect Overlay -->
+  <div class="crt-overlay" id="crt-overlay"></div>
+
+  <!-- Arcade Main Viewport -->
+  <div class="arcade-viewport">
+
+    <!-- Top Arcade System Bar -->
+    <header class="arcade-nav">
+      <a href="../index.html" class="nav-back-link" title="Volver al Portal IASD Pacajes">
+        ◄ IASD PACAJES PORTAL
+      </a>
+
+      <div class="arcade-system-status">
+        <span class="status-indicator"></span>
+        <span>ONLINE 2D ENGINE</span>
+        <span style="color: var(--color-neon-yellow);">• 60 FPS</span>
+      </div>
+
+      <div class="arcade-controls-btn-group">
+        <button id="btn-open-pad-modal" class="arcade-toggle-btn" style="border-color:var(--color-neon-yellow); color:var(--color-neon-yellow);" title="Vincular tu celular como control arcade">
+          📱 CONTROL CELULAR
+        </button>
+        <button id="toggle-sound-btn" class="arcade-toggle-btn" title="Activar/Desactivar Sonidos Retro">
+          SOUND: ON
+        </button>
+        <button id="toggle-crt-btn" class="arcade-toggle-btn" title="Activar/Desactivar Efecto CRT Scanlines">
+          CRT: ON
+        </button>
+      </div>
+    </header>
+
+    <!-- HERO SECTION: THE ORION ARCADE MARQUEE -->
+    <section class="arcade-header">
+      <div class="arcade-marquee-box">
+        <!-- Pixel corners -->
+        <div class="marquee-corner tl"></div>
+        <div class="marquee-corner tr"></div>
+        <div class="marquee-corner bl"></div>
+        <div class="marquee-corner br"></div>
+
+        <h1 class="arcade-main-title">ORIÓN</h1>
+        
+        <div class="arcade-sub-title">
+          <span class="sub-flair">★</span>
+          <span>ARCADE</span>
+          <span class="sub-flair">★</span>
+        </div>
+
+        <!-- Coin Slot & Credits -->
+        <div class="arcade-coin-bar">
+          <button id="insert-coin-btn" class="insert-coin-btn" type="button">
+            INSERT COIN [1 COIN = 1 PLAY]
+          </button>
+          <div class="credits-counter" id="hud-credits">
+            CRÉDITOS: 04
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN ARCADE CABINET SCREEN STAGE -->
+    <main class="cabinet-stage">
+      <div class="cabinet-header-stripe"></div>
+
+      <div class="cabinet-screen-wrapper">
+        <!-- Top Screen In-Game HUD -->
+        <div class="screen-hud">
+          <div class="hud-item">
+            <span class="hud-label">1UP SCORE:</span>
+            <span class="hud-val" id="hud-score">000000</span>
+          </div>
+          <div class="hud-item">
+            <span class="hud-label">HIGH SCORE:</span>
+            <span class="hud-val" id="hud-highscore">099990</span>
+          </div>
+          <div class="hud-item">
+            <span class="hud-label">VIDAS:</span>
+            <span class="hud-lives" id="hud-lives">❤️ ❤️ ❤️</span>
+          </div>
+          <div class="hud-item" id="pad-hud-badge" style="display:none; border:1px solid var(--color-neon-cyan); padding:0.15rem 0.4rem; background:rgba(0,245,255,0.1);">
+            <span class="hud-label" style="color:var(--color-neon-yellow);">📱 MANDO:</span>
+            <span class="hud-val" id="hud-pad-status" style="font-size:0.75rem; color:var(--color-neon-cyan);">VINCULADO</span>
+          </div>
+        </div>
+
+        <!-- Playable 2D Pixel Canvas Game -->
+        <canvas id="game-canvas"></canvas>
+
+        <!-- Start Overlay Screen -->
+        <div class="game-ui-overlay" id="game-ui-overlay">
+          <h2 class="game-overlay-title">★ ORIÓN: DEFENSOR ESPACIAL ★</h2>
+          <p class="game-overlay-desc">
+            Pilota la nave estelar en la constelación de Orión. Destruye los asteroides cósmicos, neutraliza los drones invasores y recolecta cápsulas de energía [P] para potenciar tu fuego.
+          </p>
+          <button id="game-start-btn" class="game-start-btn" type="button">
+            PRESS START [JUGAR]
+          </button>
+          <div class="controls-hint-badge">
+            <span>MOVIMIENTO: <span class="key-tag">◄ ▲ ▼ ►</span> / <span class="key-tag">W A S D</span></span>
+            <span>DISPARO: <span class="key-tag">BARRA ESPACIO</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Touch On-Screen Controls -->
+      <div class="mobile-touch-controls">
+        <div class="touch-dpad">
+          <button id="touch-left" class="touch-btn" aria-label="Izquierda">◄</button>
+          <button id="touch-right" class="touch-btn" aria-label="Derecha">►</button>
+        </div>
+        <button id="touch-fire" class="touch-btn touch-fire-btn" aria-label="Disparar">FIRE 🔥</button>
+      </div>
+    </main>
+
+    <!-- ARCADE GAMES CATALOG -->
+    <section class="arcade-catalog-section">
+      <div class="section-title-wrap">
+        <h2 class="pixel-section-title">🕹️ SALA DE JUEGOS VIRTUALES</h2>
+      </div>
+
+      <div class="games-grid">
+        <!-- Game 1: Orion Space Defender -->
+        <article class="arcade-card">
+          <span class="card-badge gold">JUGABLE AHORA</span>
+          <div class="card-preview-window">
+            <img src="assets/orion_arcade_banner.jpg" alt="ORIÓN: Defensor Espacial" class="card-preview-img">
+          </div>
+          <div class="card-content">
+            <h3 class="card-game-title">ORIÓN: DEFENSOR ESPACIAL</h3>
+            <p class="card-game-desc">
+              Acción retro Shoot 'em up en el corazón de la nebulosa de Orión. Destruye meteoros y acumula el récord supremo.
+            </p>
+            <div class="card-footer">
+              <span class="players-tag">👥 1 JUGADOR</span>
+              <button class="card-play-btn" data-launch-game="orion-defender" type="button">JUGAR YA</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Game 2: Trivia Bíblica 8-Bit -->
+        <article class="arcade-card">
+          <span class="card-badge">POPULAR</span>
+          <div class="card-preview-window" style="background: linear-gradient(135deg, #1e0836, #3b0764); display:flex; flex-direction:column; align-items:center; justify-content:center;">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">📜</div>
+            <div style="font-family: var(--font-pixel); font-size: 0.7rem; color: var(--color-neon-yellow);">QUIZ 8-BIT</div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-game-title">TRIVIA BÍBLICA 8-BIT</h3>
+            <p class="card-game-desc">
+              Pon a prueba tus conocimientos de historias bíblicas, profecías y personajes en formato interactivo retro.
+            </p>
+            <div class="card-footer">
+              <span class="players-tag">👥 1-4 JUGADORES</span>
+              <a href="trivia.html" class="card-play-btn" style="text-decoration:none; display:inline-block; text-align:center;">JUGAR TRIVIA</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Game 3: Laberinto del Conquistador -->
+        <article class="arcade-card">
+          <span class="card-badge" style="background:#00f5ff; color:#000;">EN DESARROLLO</span>
+          <div class="card-preview-window" style="background: linear-gradient(135deg, #071f1e, #0e4429); display:flex; flex-direction:column; align-items:center; justify-content:center;">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">🧭</div>
+            <div style="font-family: var(--font-pixel); font-size: 0.7rem; color: #00ff66;">PIXEL LABYRINTH</div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-game-title">LABERINTO CONQUISTADOR</h3>
+            <p class="card-game-desc">
+              Explora sendas pixeladas, rescata campistas extraviados y recolecta insignias para llegar al campamento base.
+            </p>
+            <div class="card-footer">
+              <span class="players-tag">👥 1 JUGADOR</span>
+              <button class="card-play-btn" data-launch-game="conqui-maze" type="button">INFO</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Game 4: Memoria de las Constelaciones -->
+        <article class="arcade-card">
+          <span class="card-badge" style="background:#8b5cf6;">PRÓXIMAMENTE</span>
+          <div class="card-preview-window" style="background: linear-gradient(135deg, #180936, #2e1065); display:flex; flex-direction:column; align-items:center; justify-content:center;">
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">✨</div>
+            <div style="font-family: var(--font-pixel); font-size: 0.7rem; color: var(--color-neon-cyan);">MEMORY MATCH</div>
+          </div>
+          <div class="card-content">
+            <h3 class="card-game-title">MEMORIA CELESTIAL</h3>
+            <p class="card-game-desc">
+              Empareja constelaciones celestiales, símbolos bíblicos y versículos en un juego de memoria visual cronometrado.
+            </p>
+            <div class="card-footer">
+              <span class="players-tag">👥 1-2 JUGADORES</span>
+              <button class="card-play-btn" data-launch-game="memory-stars" type="button">INFO</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- HIGH SCORES / SALÓN DE LA FAMA -->
+    <section class="high-scores-box">
+      <h2 class="scores-title">🏆 SALÓN DE LA FAMA • TOP SCORES</h2>
+      <table class="scores-table">
+        <thead>
+          <tr>
+            <th>POS</th>
+            <th>PILOTO</th>
+            <th>PUNTAJE</th>
+            <th>FECHA</th>
+          </tr>
+        </thead>
+        <tbody id="high-scores-body">
+          <!-- Filled by JavaScript -->
+        </tbody>
+      </table>
+    </section>
+
+  </div>
+
+  <!-- Trivia Modal / Custom Alert Dialog -->
+  <div class="score-modal" id="score-modal">
+    <div class="score-modal-dialog">
+      <!-- Dynamic modal content -->
+    </div>
+  </div>
+
+  <!-- Modal Vincular Mando Móvil -->
+  <div class="score-modal" id="pad-modal">
+    <div class="score-modal-dialog" style="max-width: 520px;">
+      <h3 style="color:var(--color-neon-yellow); font-size:1.2rem; margin-bottom:0.75rem; text-shadow:2px 2px #000;">
+        📱 MANDO INALÁMBRICO
+      </h3>
+      <p style="font-family:var(--font-silk); font-size:0.8rem; color:#cbd5e1; line-height:1.5; margin-bottom:1.2rem;">
+        Escanea este código QR con la cámara de tu celular para convertirlo en un control arcade:
+      </p>
+
+      <!-- QR Code display -->
+      <div id="pad-qr-container" style="background:#fff; padding:10px; display:inline-block; border:4px solid var(--color-neon-cyan); margin-bottom:1rem; border-radius:4px;">
+        <img id="pad-qr-img" src="" alt="Código QR Mando" style="width:180px; height:180px; display:block;">
+      </div>
+
+      <div style="margin-bottom:1.25rem;">
+        <span style="font-size:0.65rem; color:#94a3b8; display:block; margin-bottom:0.35rem;">O INGRESA ESTE CÓDIGO EN PAD.HTML:</span>
+        <strong id="pad-room-code" style="font-family:var(--font-crt); font-size:2.2rem; color:var(--color-neon-green); letter-spacing:3px;">
+          ORI-88
+        </strong>
+      </div>
+
+      <!-- Live Connection Status -->
+      <div id="pad-conn-status" style="font-family:var(--font-silk); font-size:0.75rem; color:var(--color-neon-yellow); margin-bottom:1.5rem; background:#190b33; padding:0.6rem; border:1px solid #482384;">
+        ⏳ Esperando que el celular se conecte...
+      </div>
+
+      <div style="display:flex; justify-content:center; gap:0.75rem; flex-wrap:wrap;">
+        <a id="pad-direct-link" href="#" target="_blank" class="arcade-toggle-btn" style="text-decoration:none; font-size:0.65rem; padding:0.6rem 0.9rem;">
+          PROBAR CONTROL EN OTRA PESTAÑA
+        </a>
+        <button type="button" class="submit-score-btn" onclick="closePadModal()" style="font-size:0.7rem; padding:0.6rem 1.2rem;">
+          CERRAR
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arcade Footer -->
+  <footer class="arcade-footer">
+    <p class="footer-text">
+      🎮 ORIÓN ARCADE — Ministerio Joven & Recreación Saludable
+    </p>
+    <p class="footer-sub">
+      Iglesia Adventista del Séptimo Día - Pacajes &copy; 2026. Todos los derechos reservados.
+    </p>
+    <div class="footer-verse">
+      «Buscad al que hace las Pléyades y el Orión, y vuelve las tinieblas en mañana» — Amós 5:8
+    </div>
+  </footer>
+
+  <!-- Supabase & Arcade Engine Logic -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="arcade.js"></script>
+</body>
+</html>
