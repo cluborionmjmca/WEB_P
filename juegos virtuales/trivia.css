@@ -1,0 +1,978 @@
+/* ========================================================
+   TRIVIA BÍBLICA - ¿QUIÉN QUIERE SER MILLONARIO? (8-BIT)
+   ORIÓN ARCADE - IASD PACAJES
+   ======================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=VT323&display=swap');
+
+:root {
+  --color-bg-dark: #070312;
+  --color-bg-panel: #120726;
+  --color-bg-card: #1c0c38;
+  --color-gold: #ffe600;
+  --color-gold-shadow: #8f7200;
+  --color-cyan: #00f5ff;
+  --color-cyan-shadow: #006680;
+  --color-magenta: #ff007f;
+  --color-green: #00ff66;
+  --color-green-dark: #065f46;
+  --color-orange: #ff9900;
+  --color-white: #f8fafc;
+  --color-gray: #64748b;
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-silk: 'Silkscreen', monospace;
+  --font-crt: 'VT323', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  image-rendering: pixelated;
+  -webkit-font-smoothing: none;
+}
+
+html, body {
+  min-height: 100vh;
+  background-color: var(--color-bg-dark);
+  color: var(--color-white);
+  font-family: var(--font-pixel);
+  user-select: none;
+}
+
+/* Fullscreen mode and in-game zero-scroll body rules */
+body.in-game,
+body.fullscreen-mode {
+  overflow: hidden !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+}
+
+/* CRT Scanlines */
+.crt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  background: linear-gradient(rgba(18, 16, 26, 0) 50%, rgba(0, 0, 0, 0.42) 50%);
+  background-size: 100% 4px;
+  box-shadow: inset 0 0 90px rgba(0, 0, 0, 0.8);
+  opacity: 0.85;
+}
+
+/* Parallax Canvas */
+#trivia-space-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Layout Container */
+.trivia-container {
+  position: relative;
+  z-index: 10;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+body.in-game .trivia-container,
+body.fullscreen-mode .trivia-container {
+  height: 100vh;
+  max-height: 100vh;
+  padding: 0.5rem 0.85rem;
+  overflow: hidden;
+}
+
+/* TOP HEADER */
+.trivia-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  background: rgba(18, 7, 38, 0.95);
+  border: 3px solid var(--color-gold);
+  box-shadow: 0 0 15px rgba(255, 230, 0, 0.35), 4px 4px 0px #000;
+  margin-bottom: 0.75rem;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+body.in-game .trivia-nav,
+body.fullscreen-mode .trivia-nav {
+  margin-bottom: 0.45rem;
+  padding: 0.4rem 0.8rem;
+}
+
+.back-arcade-link {
+  color: var(--color-cyan);
+  text-decoration: none;
+  font-size: 0.62rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.15s;
+}
+
+.back-arcade-link:hover {
+  color: #fff;
+  transform: translateX(-3px);
+  text-shadow: 0 0 8px var(--color-cyan);
+}
+
+/* Center Title in Header */
+.trivia-brand-heading {
+  font-size: clamp(0.95rem, 2vw, 1.25rem);
+  color: var(--color-gold);
+  text-align: center;
+  text-shadow: 2px 2px 0px #000, 0 0 12px rgba(255, 230, 0, 0.7);
+  letter-spacing: 2px;
+}
+
+/* Top Right Action Group */
+.header-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+/* Conductor Mando Toggle Button */
+.conductor-toggle-btn {
+  background: #102640;
+  color: var(--color-cyan);
+  border: 2px solid var(--color-cyan);
+  font-family: var(--font-pixel);
+  font-size: 0.58rem;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px #000;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.15s;
+}
+
+.conductor-toggle-btn:hover {
+  background: var(--color-cyan);
+  color: #000;
+  box-shadow: 0 0 10px var(--color-cyan);
+}
+
+.conductor-toggle-btn:active {
+  transform: translate(2px, 2px);
+}
+
+/* Fullscreen Toggle Button */
+.fullscreen-toggle-btn {
+  background: #1f0b3b;
+  color: var(--color-gold);
+  border: 2px solid var(--color-gold);
+  font-family: var(--font-pixel);
+  font-size: 0.58rem;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px #000;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.15s;
+}
+
+.fullscreen-toggle-btn:hover {
+  background: var(--color-gold);
+  color: #000;
+  box-shadow: 0 0 10px var(--color-gold);
+}
+
+.fullscreen-toggle-btn:active {
+  transform: translate(2px, 2px);
+}
+
+/* Floating on-screen conductor toast */
+.conductor-toast {
+  position: fixed;
+  top: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(14, 6, 32, 0.96);
+  border: 3px solid var(--color-gold);
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  padding: 0.6rem 1.4rem;
+  box-shadow: 0 0 20px rgba(255, 230, 0, 0.6), 4px 4px 0 #000;
+  z-index: 9999;
+  pointer-events: none;
+  animation: slideToastDown 0.25s ease-out;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+@keyframes slideToastDown {
+  from { top: -50px; opacity: 0; }
+  to { top: 1.2rem; opacity: 1; }
+}
+
+/* Mini ORIÓN ARCADE Badge */
+.mini-orion-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0e051c;
+  border: 2px solid var(--color-cyan);
+  padding: 0.35rem 0.65rem;
+  text-decoration: none;
+  box-shadow: 2px 2px 0px #000, 0 0 10px rgba(0, 245, 255, 0.4);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.mini-orion-badge:hover {
+  transform: scale(1.04);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 15px rgba(255, 230, 0, 0.6);
+}
+
+.mini-orion-title {
+  font-size: 0.7rem;
+  color: #fff;
+  letter-spacing: 1px;
+  text-shadow: -1px -1px 0 #00f5ff, 1px -1px 0 #00f5ff, -1px 1px 0 #ff007f, 1px 1px 0 #ff007f;
+}
+
+.mini-orion-sub {
+  font-size: 0.42rem;
+  color: var(--color-gold);
+  letter-spacing: 1px;
+  margin-top: 1px;
+}
+
+/* ========================================================
+   SETUP SCREEN (PLAYER SELECTION & NAMES)
+   ======================================================== */
+.setup-screen {
+  background: rgba(18, 7, 38, 0.96);
+  border: 4px solid var(--color-gold);
+  box-shadow: 6px 6px 0px #000, 0 0 25px rgba(255, 230, 0, 0.3);
+  padding: 1.8rem 1.4rem;
+  max-width: 860px;
+  margin: 0.5rem auto;
+  text-align: center;
+  position: relative;
+  flex-grow: 1;
+}
+
+.setup-title {
+  font-size: clamp(1.2rem, 3.5vw, 1.8rem);
+  color: var(--color-gold);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0px #000, 0 0 15px rgba(255, 230, 0, 0.7);
+}
+
+.setup-subtitle {
+  font-family: var(--font-silk);
+  font-size: 0.78rem;
+  color: #cbd5e1;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.setup-section-title {
+  font-size: 0.75rem;
+  color: var(--color-cyan);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Player Count Selector Buttons */
+.player-count-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.6rem;
+  flex-wrap: wrap;
+}
+
+.count-btn {
+  background: #251245;
+  color: #fff;
+  border: 3px solid #5b21b6;
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  padding: 0.65rem 1.1rem;
+  cursor: pointer;
+  box-shadow: 3px 3px 0px #000;
+  transition: all 0.15s;
+}
+
+.count-btn:hover {
+  border-color: var(--color-cyan);
+  transform: translateY(-2px);
+}
+
+.count-btn.active {
+  background: var(--color-gold);
+  color: #000;
+  border-color: #fff;
+  box-shadow: 3px 3px 0px #000, 0 0 12px rgba(255, 230, 0, 0.8);
+}
+
+/* Player Cards Form */
+.players-input-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.player-config-card {
+  background: #190a36;
+  border: 2px solid #3d1b7a;
+  padding: 0.9rem;
+  box-shadow: 3px 3px 0px #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.player-config-card:focus-within {
+  border-color: var(--color-cyan);
+}
+
+.player-avatar-preview {
+  font-size: 2rem;
+  width: 48px;
+  height: 48px;
+  background: #090216;
+  border: 2px solid var(--color-gold);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-selector {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.avatar-opt-btn {
+  background: #090216;
+  border: 1px solid #4a278d;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0.15rem 0.35rem;
+  transition: transform 0.1s;
+}
+
+.avatar-opt-btn:hover {
+  transform: scale(1.2);
+  border-color: var(--color-cyan);
+}
+
+.player-name-input {
+  width: 100%;
+  background: #080214;
+  border: 2px solid #5b21b6;
+  color: #fff;
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  padding: 0.5rem 0.35rem;
+  text-align: center;
+  outline: none;
+  text-transform: uppercase;
+}
+
+.player-name-input:focus {
+  border-color: var(--color-cyan);
+}
+
+/* Game Mode Toggle */
+.mode-toggle-group {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+}
+
+.mode-btn {
+  background: #1c0c38;
+  color: #cbd5e1;
+  border: 2px solid #4a278d;
+  font-family: var(--font-silk);
+  font-size: 0.72rem;
+  padding: 0.65rem 1rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px #000;
+  transition: all 0.15s;
+}
+
+.mode-btn:hover {
+  border-color: var(--color-cyan);
+}
+
+.mode-btn.active {
+  background: #2b1154;
+  color: var(--color-cyan);
+  border-color: var(--color-cyan);
+  box-shadow: 2px 2px 0px #000, 0 0 10px rgba(0, 245, 255, 0.4);
+}
+
+/* Start Button */
+.start-trivia-btn {
+  background: var(--color-gold);
+  color: #000;
+  border: 3px solid #fff;
+  font-family: var(--font-pixel);
+  font-size: 0.95rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px #000, 0 0 20px rgba(255, 230, 0, 0.7);
+  transition: all 0.1s;
+  letter-spacing: 1px;
+}
+
+.start-trivia-btn:hover {
+  background: #fff;
+  transform: scale(1.03);
+}
+
+.start-trivia-btn:active {
+  transform: translate(2px, 2px);
+}
+
+/* ========================================================
+   GAMEPLAY SCREEN (THE MILLIONAIRE BOARD)
+   ======================================================== */
+.game-screen {
+  display: none;
+}
+
+.game-screen.active {
+  display: grid;
+  grid-template-columns: 1fr 270px;
+  gap: 1rem;
+  align-items: stretch;
+  flex-grow: 1;
+  height: calc(100vh - 90px);
+  max-height: calc(100vh - 90px);
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .game-screen.active {
+    grid-template-columns: 1fr;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+/* MAIN STAGE (LEFT) */
+.trivia-stage {
+  background: rgba(18, 7, 38, 0.96);
+  border: 3px solid var(--color-cyan);
+  box-shadow: 5px 5px 0px #000, 0 0 20px rgba(0, 245, 255, 0.2);
+  padding: 0.9rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+/* Turn & Status Bar */
+.turn-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  background: #0f0521;
+  border: 2px solid #3b1873;
+  padding: 0.5rem 0.85rem;
+  margin-bottom: 0.55rem;
+  flex-shrink: 0;
+}
+
+.current-player-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.current-player-avatar {
+  font-size: 1.4rem;
+}
+
+.current-player-name {
+  font-size: 0.78rem;
+  color: var(--color-gold);
+}
+
+.current-bank-display {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.68rem;
+  color: #94a3b8;
+}
+
+.bank-talentos {
+  color: var(--color-green);
+  font-family: var(--font-crt);
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+}
+
+/* Multiplayer turn indicator tag */
+.players-turn-badge {
+  background: #2b1154;
+  border: 1px solid var(--color-cyan);
+  color: var(--color-cyan);
+  font-size: 0.6rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: 2px;
+  font-family: var(--font-silk);
+}
+
+/* LIFELINES ROW */
+.lifelines-row {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 0.55rem;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.lifeline-btn {
+  background: #180a33;
+  color: var(--color-cyan);
+  border: 2px solid var(--color-cyan);
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  padding: 0.45rem 0.75rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px #000;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.1s;
+}
+
+.lifeline-btn:hover:not(:disabled) {
+  background: var(--color-cyan);
+  color: #000;
+  box-shadow: 0 0 10px var(--color-cyan);
+}
+
+.lifeline-btn:disabled {
+  opacity: 0.3;
+  border-color: #475569;
+  color: #64748b;
+  cursor: not-allowed;
+  text-decoration: line-through;
+  box-shadow: none;
+}
+
+/* QUESTION BOX */
+.question-box {
+  background: linear-gradient(180deg, #160a30 0%, #0c041c 100%);
+  border: 3px solid var(--color-gold);
+  box-shadow: inset 0 0 15px rgba(255, 230, 0, 0.2), 3px 3px 0px #000;
+  padding: 1.1rem;
+  text-align: center;
+  margin-bottom: 0.75rem;
+  position: relative;
+  min-height: 105px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.question-meta-badge {
+  font-size: 0.65rem;
+  color: var(--color-cyan);
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-silk);
+}
+
+.question-text {
+  font-size: clamp(1.6rem, 3.4vw, 2.15rem); /* +10% additional increase */
+  line-height: 1.45;
+  color: #fff;
+  text-shadow: 2px 2px 0px #000;
+}
+
+/* 4 CHOICES GRID */
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+  flex-grow: 1;
+}
+
+@media (max-width: 650px) {
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.option-btn {
+  background: #140728;
+  color: #fff;
+  border: 2px solid #4a2185;
+  padding: 0.85rem 1.1rem;
+  font-family: var(--font-pixel);
+  font-size: clamp(1.02rem, 1.9vw, 1.25rem); /* +50% increase */
+  line-height: 1.4;
+  cursor: pointer;
+  text-align: left;
+  box-shadow: 3px 3px 0px #000;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.1s;
+  min-height: 64px;
+}
+
+.option-letter {
+  color: var(--color-gold);
+  font-size: 1.3rem; /* +50% increase */
+  font-weight: bold;
+}
+
+.option-text {
+  flex-grow: 1;
+}
+
+.option-btn:hover:not(:disabled) {
+  border-color: var(--color-cyan);
+  background: #250f4a;
+  transform: translateY(-2px);
+  box-shadow: 3px 4px 0px #000, 0 0 10px rgba(0, 245, 255, 0.4);
+}
+
+.option-btn:active:not(:disabled) {
+  transform: translate(2px, 2px);
+}
+
+/* Option States */
+.option-btn.selected {
+  background: #d97706;
+  border-color: #fbbf24;
+  color: #000;
+  animation: blink-orange 0.3s infinite alternate;
+}
+
+@keyframes blink-orange {
+  from { background: #b45309; }
+  to { background: #f59e0b; }
+}
+
+.option-btn.correct {
+  background: #059669 !important;
+  border-color: #34d399 !important;
+  color: #fff !important;
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.8) !important;
+}
+
+.option-btn.wrong {
+  background: #b91c1c !important;
+  border-color: #f87171 !important;
+  color: #fff !important;
+  box-shadow: 0 0 20px rgba(248, 113, 113, 0.8) !important;
+}
+
+.option-btn.eliminated {
+  opacity: 0.15;
+  pointer-events: none;
+  border-color: #334155;
+  background: #0f172a;
+}
+
+/* Bottom Action Bar */
+.game-bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+.walk-away-btn {
+  background: #1e1138;
+  color: var(--color-orange);
+  border: 2px solid var(--color-orange);
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  padding: 0.5rem 0.85rem;
+  cursor: pointer;
+  box-shadow: 2px 2px 0px #000;
+}
+
+.walk-away-btn:hover {
+  background: var(--color-orange);
+  color: #000;
+}
+
+/* ========================================================
+   RIGHT COLUMN: THE 15-TIER PRIZE LADDER
+   ======================================================== */
+.ladder-panel {
+  background: rgba(18, 7, 38, 0.96);
+  border: 3px solid var(--color-gold);
+  box-shadow: 4px 4px 0px #000;
+  padding: 0.65rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.ladder-header {
+  text-align: center;
+  font-size: 0.68rem;
+  color: var(--color-cyan);
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid #3b1873;
+  margin-bottom: 0.35rem;
+  flex-shrink: 0;
+}
+
+.ladder-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column-reverse; /* 1 at bottom, 15 at top */
+  gap: 0.15rem;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.ladder-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.2rem 0.45rem;
+  font-size: 0.58rem;
+  font-family: var(--font-silk);
+  border-radius: 2px;
+  color: #94a3b8;
+  line-height: 1;
+}
+
+.ladder-level-num {
+  font-family: var(--font-pixel);
+  font-size: 0.52rem;
+  width: 20px;
+}
+
+.ladder-prize {
+  font-family: var(--font-crt);
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+}
+
+/* Safe Zone Rungs */
+.ladder-item.safe-zone {
+  color: #fff;
+  font-weight: bold;
+}
+.ladder-item.safe-zone .ladder-prize {
+  color: #fff;
+}
+
+/* Active current step */
+.ladder-item.current {
+  background: var(--color-gold);
+  color: #000 !important;
+  box-shadow: 0 0 10px rgba(255, 230, 0, 0.8);
+  font-weight: bold;
+}
+
+.ladder-item.current .ladder-prize {
+  color: #000 !important;
+}
+
+.ladder-item.cleared {
+  color: var(--color-green);
+}
+.ladder-item.cleared .ladder-prize {
+  color: var(--color-green);
+}
+
+/* Hide footer when game is active to eliminate any scrolling */
+body.in-game .trivia-footer {
+  display: none !important;
+}
+
+/* MODALS */
+.trivia-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  padding: 1rem;
+}
+
+.trivia-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.trivia-dialog {
+  background: #140728;
+  border: 5px solid var(--color-gold);
+  box-shadow: 0 0 45px rgba(255, 230, 0, 0.7), 10px 10px 0px #000;
+  padding: 2.2rem 2.2rem;
+  max-width: 760px; /* Enlarged dialog width */
+  width: 95%;
+  text-align: center;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-icon {
+  font-size: 3.8rem; /* Enlarged icon */
+  margin-bottom: 0.8rem;
+}
+
+.modal-title {
+  font-size: 1.45rem; /* Enlarged title */
+  color: var(--color-gold);
+  margin-bottom: 1.1rem;
+  text-shadow: 2px 2px 0px #000;
+  letter-spacing: 1px;
+}
+
+.modal-body-text {
+  font-family: var(--font-silk);
+  font-size: 1.1rem; /* Enlarged body text */
+  line-height: 1.65;
+  color: #e2e8f0;
+  margin-bottom: 1.6rem;
+}
+
+/* Audience Vote Poll Chart (Pregunta a los Hermanos) */
+.poll-bars-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  height: 175px; /* Enlarged chart height */
+  background: #090216;
+  border: 3px solid #3b1873;
+  padding: 1.2rem 1rem 0.8rem 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.poll-bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  width: 20%;
+}
+
+.poll-bar-fill {
+  width: 100%;
+  background: var(--color-cyan);
+  box-shadow: 0 0 12px rgba(0, 245, 255, 0.7);
+  transition: height 0.6s ease;
+  min-height: 6px;
+}
+
+.poll-percent-label {
+  font-family: var(--font-crt);
+  font-size: 1.45rem; /* Enlarged percentage numbers */
+  color: var(--color-gold);
+}
+
+.poll-letter-label {
+  font-size: 0.95rem; /* Enlarged letters */
+  font-weight: bold;
+  color: #fff;
+}
+
+.modal-close-btn {
+  background: var(--color-magenta);
+  color: #fff;
+  border: 3px solid #fff;
+  font-family: var(--font-pixel);
+  font-size: 0.9rem; /* Enlarged buttons */
+  padding: 0.9rem 1.8rem;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px #000;
+  letter-spacing: 1px;
+}
+
+.modal-close-btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+/* Leaderboard Podium Table inside Modal */
+.podium-table {
+  width: 100%;
+  margin: 1.2rem 0 1.8rem 0;
+  border-collapse: collapse;
+  font-family: var(--font-crt);
+  font-size: 1.85rem; /* Enlarged podium numbers & text */
+}
+
+.podium-table th {
+  font-family: var(--font-pixel);
+  font-size: 0.82rem;
+  color: var(--color-cyan);
+  padding: 0.6rem 0.5rem;
+  border-bottom: 2px solid var(--color-gold);
+}
+
+.podium-table td {
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid #28114d;
+}
+
+.podium-rank-1 { color: #ffe600; font-weight: bold; }
+.podium-rank-2 { color: #00f5ff; }
+.podium-rank-3 { color: #ff007f; }
+
+/* FOOTER */
+.trivia-footer {
+  text-align: center;
+  padding: 1.5rem 1rem 0.5rem 1rem;
+  border-top: 2px solid #231245;
+  margin-top: 1.5rem;
+  background: #080314;
+  flex-shrink: 0;
+}
+
+.trivia-footer p {
+  font-family: var(--font-silk);
+  font-size: 0.7rem;
+  color: #94a3b8;
+  margin-bottom: 0.35rem;
+}
